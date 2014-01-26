@@ -1,0 +1,2 @@
+module AsamMastersHelper
+end

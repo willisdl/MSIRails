@@ -1,0 +1,199 @@
+.article-pageTitle {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 23px !important;
+    font-weight: normal !important;
+    text-decoration: none !important;
+    color: #000000 !important
+}
+
+.article-pageSubTitle {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    color: #666666 !important
+}
+
+.article-pageDescription {
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: normal !important;
+    text-decoration: none !important;
+    color: #666666 !important
+}
+
+.pub-pageTitle {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 23px !important;
+    font-weight: normal !important;
+    text-decoration: none !important;
+    color: #000000 !important
+}
+
+.pub-pageSubTitle {
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    text-decoration: none !important;
+    color: #666666 !important
+}
+
+.pub-pageDescription {
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: normal !important;
+    text-decoration: none !important;
+    color: #666666 !important
+}
+
+.pub-DownloadButton {
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-size:10px !important;
+    color: #000000 !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    text-decoration: none  !important;
+    border: 1px solid #666666 !important;
+    height: 20px !important
+}
+
+.pub-DownloadButton-ONI {
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-size:10px !important;
+    color: #000000 !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    text-decoration: none  !important;
+    border: 1px solid #666666 !important;
+    height: 20px !important
+}
+
+.pub-pageItemTitle {
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    text-decoration: none !important;
+    color: #000099 !important
+}
+
+.pub-pageItemTitle:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    text-decoration: underline !important;
+    color: #000099 !important
+}
+
+.pub-pageItemDescription {
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    text-decoration: none !important;
+    color: #999999 !important
+}
+
+.pub-pageDetails {
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: normal !important;
+    text-decoration: none !important;
+    color: #666666 !important
+}
+
+.pub-downloadTopBar {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-weight: bold !important;
+    font-size: 12px !important;
+    color: #ffffff !important;
+    font-style: normal !important;
+    text-decoration: none  !important;
+    background-color: #666666 !important;
+}
+
+.nga-querySelectRow {
+    background-color:#EEEEEE !important;
+    padding:5px !important;
+    border:2px solid #CCCCCC !important;
+}
+
+.nga-querySubmitRow {
+    background-color:#EEEEEE !important;
+    padding:5px !important;
+    border-left:2px solid #CCCCCC !important;
+    border-right:2px solid #CCCCCC !important;
+    border-bottom:2px solid #CCCCCC !important;
+}
+
+.nga-queryRow {
+    background-color:#FFFFFF !important;
+    padding-left:5px !important;
+    padding-top:5px !important;
+    border-left:2px solid #CCCCCC !important;
+    border-right:2px solid #CCCCCC !important;
+    border-bottom:2px solid #CCCCCC !important;
+}
+
+.nga-queryValueCell {
+    background-color:#FFFFFF !important;
+    border-left:1px solid #CCCCCC;
+    border-top:1px solid #CCCCCC;
+}
+
+.nga-queryLabelNote {
+    font-weight: bold !important;
+    color: #666666 !important;
+    font-style: normal !important;
+    text-decoration: none  !important
+}
+
+.nga-queryLabelNoteSmall {
+    font-weight: normal !important;
+    font-size:12px;
+    color: #666666 !important;
+    font-style: normal !important;
+    text-decoration: none  !important
+}
+
+.nga-queryInputElement {
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    font-size:11px;
+    font-weight: normal !important;
+    color: #000000 !important;
+    font-style: normal !important;
+    text-decoration: none  !important
+}
+
+.msi-verticalNavInputElement {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 11px !important;
+    font-style: normal !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+    border: 1px solid #666666 !important;
+    height: 18px !important;
+    width: 100px;
+}
+
+.msi-verticalNavLinkNoBold {
+    font-size: 9px;
+    font-weight: normal !important;
+    text-decoration: underline !important;
+    color: #000099 !important
+}
+
+.msi-verticalNavLinkNoBold:hover {
+    font-size: 9px;
+    font-weight: normal !important;
+    text-decoration: none !important;
+    color: #000099 !important
+}
+
+.msi-verticalNavTextSml {
+    font-family:verdana;
+    font-size:9px;
+    color:#666666;
+}

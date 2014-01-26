@@ -1,0 +1,717 @@
+  [1m[36m (2365.3ms)[0m  [1mCREATE TABLE "SCHEMA_MIGRATIONS" ("VERSION" VARCHAR2(255) NOT NULL) [0m
+OracleEnhanced shortened default index name index_schema_migrations_on_version to i_schema_migrations_version
+  [1m[35m (137.1ms)[0m   SELECT 1 FROM all_indexes i
+ WHERE i.owner = 'NSS'
+ AND i.table_owner = 'NSS'
+ AND i.table_name = 'SCHEMA_MIGRATIONS'
+ AND i.index_name = 'UNIQUE_SCHEMA_MIGRATIONS'
+
+  [1m[36m (304.0ms)[0m  [1mCREATE UNIQUE INDEX "UNIQUE_SCHEMA_MIGRATIONS" ON "SCHEMA_MIGRATIONS" ("VERSION") [0m
+  [1m[35mActiveRecord::SchemaMigration Load (94.4ms)[0m  SELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"
+Migrating to CreateAsamMasters (20140113124708)
+  [1m[36m (82.2ms)[0m  [1mCREATE TABLE "ASAM_MASTERS" ("ID" NUMBER(38) NOT NULL PRIMARY KEY, "CREATED_AT" DATE, "UPDATED_AT" DATE) [0m
+  [1m[35m (98.2ms)[0m  CREATE SEQUENCE "ASAM_MASTERS_SEQ" START WITH 10000
+  [1m[36m (267.7ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (1440.2ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mSQL (155.3ms)[0m  [1mINSERT INTO "SCHEMA_MIGRATIONS" ("VERSION") VALUES (:a1)[0m  [["version", "20140113124708"]]
+  [1m[35mActiveRecord::SchemaMigration Load (256.1ms)[0m  SELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"
+  [1m[36m (446.7ms)[0m  [1mSELECT DECODE(table_name, UPPER(table_name), LOWER(table_name), table_name) FROM all_tables WHERE owner = SYS_CONTEXT('userenv', 'session_user') AND secondary = 'N'[0m
+  [1m[35m (556.1ms)[0m  SELECT LOWER(mview_name) FROM all_mviews WHERE owner = SYS_CONTEXT('userenv', 'session_user')
+  [1m[36m (1561.9ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'ASAM_MASTERS' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (204.8ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'ASAM_MASTERS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (233.0ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'ASAM_MASTERS'[0m
+  [1m[35m (215.9ms)[0m  SELECT LOWER(default_tablespace) FROM user_users WHERE username = SYS_CONTEXT('userenv', 'session_user')
+  [1m[36m (5497.7ms)[0m  [1mSELECT LOWER(i.table_name) AS table_name, LOWER(i.index_name) AS index_name, i.uniqueness, i.index_type, i.ityp_owner, i.ityp_name, i.parameters, LOWER(i.tablespace_name) AS tablespace_name, LOWER(c.column_name) AS column_name, e.column_expression, atc.virtual_column FROM all_indexes i JOIN all_ind_columns c ON c.index_name = i.index_name AND c.index_owner = i.owner LEFT OUTER JOIN all_ind_expressions e ON e.index_name = i.index_name AND e.index_owner = i.owner AND e.column_position = c.column_position LEFT OUTER JOIN all_tab_cols atc ON i.table_name = atc.table_name AND c.column_name = atc.column_name AND i.owner = atc.owner AND atc.hidden_column = 'NO' WHERE i.owner = 'NSS' AND i.table_owner = 'NSS' AND NOT EXISTS (SELECT uc.index_name FROM all_constraints uc WHERE uc.index_name = i.index_name AND uc.owner = i.owner AND uc.constraint_type = 'P') ORDER BY i.index_name, c.column_position[0m
+  [1m[35mPrimary Key Trigger (395.1ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'ASAM_MASTERS_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'ASAM_MASTERS'
+ AND status = 'ENABLED'
+
+  [1m[36m (893.1ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'DB_CONN_TEST' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (131.8ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'DB_CONN_TEST' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (81.5ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'DB_CONN_TEST'[0m
+  [1m[35mPrimary Key Trigger (246.5ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'DB_CONN_TEST_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'DB_CONN_TEST'
+ AND status = 'ENABLED'
+
+  [1m[36m (1461.7ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'EXCEPTIONS' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (277.2ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'EXCEPTIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (78.5ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'EXCEPTIONS'[0m
+  [1m[35mPrimary Key Trigger (68.2ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'EXCEPTIONS_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'EXCEPTIONS'
+ AND status = 'ENABLED'
+
+  [1m[36m (812.0ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'MSI_CACHE_PROPERTIES' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (225.7ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'MSI_CACHE_PROPERTIES' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (230.0ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'MSI_CACHE_PROPERTIES'[0m
+  [1m[35mPrimary Key Trigger (267.5ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'MSI_CACHE_PROPERTIES_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'MSI_CACHE_PROPERTIES'
+ AND status = 'ENABLED'
+
+  [1m[36m (4053.0ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'MSI_QUERY_PROPERTIES' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (259.2ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'MSI_QUERY_PROPERTIES' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (200.8ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'MSI_QUERY_PROPERTIES'[0m
+  [1m[35mPrimary Key Trigger (218.9ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'MSI_QUERY_PROPERTIES_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'MSI_QUERY_PROPERTIES'
+ AND status = 'ENABLED'
+
+  [1m[36m (1110.1ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'PUB_PERSIST' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (68.0ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'PUB_PERSIST' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (102.5ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'PUB_PERSIST'[0m
+  [1m[35mPrimary Key Trigger (216.3ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'PUB_PERSIST_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'PUB_PERSIST'
+ AND status = 'ENABLED'
+
+  [1m[36m (688.2ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SDE_LOGFILE_DATA' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (228.6ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SDE_LOGFILE_DATA' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (253.4ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'SDE_LOGFILE_DATA'[0m
+  [1m[35mPrimary Key Trigger (217.9ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'SDE_LOGFILE_DATA_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'SDE_LOGFILE_DATA'
+ AND status = 'ENABLED'
+
+  [1m[36m (2203.2ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SDE_LOGFILES' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (201.6ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SDE_LOGFILES' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (173.7ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'SDE_LOGFILES'[0m
+  [1m[35mPrimary Key Trigger (175.8ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'SDE_LOGFILES_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'SDE_LOGFILES'
+ AND status = 'ENABLED'
+
+  [1m[36m (1595.0ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'TXT_FILES' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (317.1ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'TXT_FILES' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (339.5ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'TXT_FILES'[0m
+  [1m[35mPrimary Key Trigger (242.7ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'TXT_FILES_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'TXT_FILES'
+ AND status = 'ENABLED'
+
+  [1m[36mForeign Keys (7309.1ms)[0m  [1m SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'ASAM_MASTERS'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+[0m
+  [1m[35mForeign Keys (304.6ms)[0m   SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'DB_CONN_TEST'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+
+  [1m[36mForeign Keys (173.1ms)[0m  [1m SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'EXCEPTIONS'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+[0m
+  [1m[35mForeign Keys (178.3ms)[0m   SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'MSI_CACHE_PROPERTIES'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+
+  [1m[36mForeign Keys (205.4ms)[0m  [1m SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'MSI_QUERY_PROPERTIES'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+[0m
+  [1m[35mForeign Keys (163.1ms)[0m   SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'PUB_PERSIST'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+
+  [1m[36mForeign Keys (185.4ms)[0m  [1m SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'SDE_LOGFILE_DATA'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+[0m
+  [1m[35mForeign Keys (158.5ms)[0m   SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'SDE_LOGFILES'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+
+  [1m[36mForeign Keys (206.7ms)[0m  [1m SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'TXT_FILES'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+[0m
+  [1m[35m (708.9ms)[0m  SELECT synonym_name, table_owner, table_name, db_link FROM user_synonyms
+  [1m[36mActiveRecord::SchemaMigration Load (245.6ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (807.7ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (320.8ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (38.4ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (199.5ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (56.8ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (59.2ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (183.6ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (61.4ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (527.6ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (1010.3ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (95.2ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (54.2ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (134.9ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (53.2ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (184.0ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (1106.4ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (52.5ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (49.9ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (125.2ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (67.3ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (128.3ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (921.3ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (59.7ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (40.4ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (176.9ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (65.4ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (584.6ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (3358.1ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (782.5ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (901.8ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (3498.1ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (1024.0ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (289.7ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (777.9ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (307.0ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (396.1ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (1646.4ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (425.4ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (426.8ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (749.3ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (266.1ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (2987.7ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (6581.3ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (518.0ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (308.4ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (1286.1ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (432.8ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mActiveRecord::SchemaMigration Load (312.1ms)[0m  SELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"
+  [1m[36m (1566.9ms)[0m  [1mSELECT DECODE(table_name, UPPER(table_name), LOWER(table_name), table_name) FROM all_tables WHERE owner = SYS_CONTEXT('userenv', 'session_user') AND secondary = 'N'[0m
+  [1m[35m (600.2ms)[0m  SELECT LOWER(mview_name) FROM all_mviews WHERE owner = SYS_CONTEXT('userenv', 'session_user')
+  [1m[36m (1315.0ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'ASAM_MASTERS' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (255.3ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'ASAM_MASTERS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (679.5ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'ASAM_MASTERS'[0m
+  [1m[35m (614.5ms)[0m  SELECT LOWER(default_tablespace) FROM user_users WHERE username = SYS_CONTEXT('userenv', 'session_user')
+  [1m[36m (7679.6ms)[0m  [1mSELECT LOWER(i.table_name) AS table_name, LOWER(i.index_name) AS index_name, i.uniqueness, i.index_type, i.ityp_owner, i.ityp_name, i.parameters, LOWER(i.tablespace_name) AS tablespace_name, LOWER(c.column_name) AS column_name, e.column_expression, atc.virtual_column FROM all_indexes i JOIN all_ind_columns c ON c.index_name = i.index_name AND c.index_owner = i.owner LEFT OUTER JOIN all_ind_expressions e ON e.index_name = i.index_name AND e.index_owner = i.owner AND e.column_position = c.column_position LEFT OUTER JOIN all_tab_cols atc ON i.table_name = atc.table_name AND c.column_name = atc.column_name AND i.owner = atc.owner AND atc.hidden_column = 'NO' WHERE i.owner = 'NSS' AND i.table_owner = 'NSS' AND NOT EXISTS (SELECT uc.index_name FROM all_constraints uc WHERE uc.index_name = i.index_name AND uc.owner = i.owner AND uc.constraint_type = 'P') ORDER BY i.index_name, c.column_position[0m
+  [1m[35mPrimary Key Trigger (614.1ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'ASAM_MASTERS_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'ASAM_MASTERS'
+ AND status = 'ENABLED'
+
+  [1m[36m (1158.3ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'DB_CONN_TEST' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (308.8ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'DB_CONN_TEST' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (242.0ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'DB_CONN_TEST'[0m
+  [1m[35mPrimary Key Trigger (307.9ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'DB_CONN_TEST_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'DB_CONN_TEST'
+ AND status = 'ENABLED'
+
+  [1m[36m (1913.2ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'EXCEPTIONS' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (6230.5ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'EXCEPTIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (587.9ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'EXCEPTIONS'[0m
+  [1m[35mPrimary Key Trigger (378.4ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'EXCEPTIONS_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'EXCEPTIONS'
+ AND status = 'ENABLED'
+
+  [1m[36m (2986.0ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'MSI_CACHE_PROPERTIES' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (268.6ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'MSI_CACHE_PROPERTIES' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (361.8ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'MSI_CACHE_PROPERTIES'[0m
+  [1m[35mPrimary Key Trigger (258.4ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'MSI_CACHE_PROPERTIES_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'MSI_CACHE_PROPERTIES'
+ AND status = 'ENABLED'
+
+  [1m[36m (7064.3ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'MSI_QUERY_PROPERTIES' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (297.5ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'MSI_QUERY_PROPERTIES' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (595.8ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'MSI_QUERY_PROPERTIES'[0m
+  [1m[35mPrimary Key Trigger (236.6ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'MSI_QUERY_PROPERTIES_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'MSI_QUERY_PROPERTIES'
+ AND status = 'ENABLED'
+
+  [1m[36m (1654.8ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'PUB_PERSIST' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (381.1ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'PUB_PERSIST' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (306.4ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'PUB_PERSIST'[0m
+  [1m[35mPrimary Key Trigger (5469.6ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'PUB_PERSIST_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'PUB_PERSIST'
+ AND status = 'ENABLED'
+
+  [1m[36m (1137.9ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SDE_LOGFILE_DATA' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (614.9ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SDE_LOGFILE_DATA' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (613.4ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'SDE_LOGFILE_DATA'[0m
+  [1m[35mPrimary Key Trigger (1753.0ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'SDE_LOGFILE_DATA_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'SDE_LOGFILE_DATA'
+ AND status = 'ENABLED'
+
+  [1m[36m (4480.3ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SDE_LOGFILES' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (285.5ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SDE_LOGFILES' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (257.3ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'SDE_LOGFILES'[0m
+  [1m[35mPrimary Key Trigger (526.8ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'SDE_LOGFILES_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'SDE_LOGFILES'
+ AND status = 'ENABLED'
+
+  [1m[36m (1918.2ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'TXT_FILES' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (590.7ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'TXT_FILES' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36m (306.4ms)[0m  [1mSELECT temporary FROM user_tables WHERE table_name = 'TXT_FILES'[0m
+  [1m[35mPrimary Key Trigger (613.4ms)[0m   SELECT trigger_name
+ FROM all_triggers
+ WHERE owner = 'NSS'
+ AND trigger_name = 'TXT_FILES_PKT'
+ AND table_owner = 'NSS'
+ AND table_name = 'TXT_FILES'
+ AND status = 'ENABLED'
+
+  [1m[36mForeign Keys (612.1ms)[0m  [1m SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'ASAM_MASTERS'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+[0m
+  [1m[35mForeign Keys (309.2ms)[0m   SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'DB_CONN_TEST'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+
+  [1m[36mForeign Keys (399.4ms)[0m  [1m SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'EXCEPTIONS'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+[0m
+  [1m[35mForeign Keys (1012.6ms)[0m   SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'MSI_CACHE_PROPERTIES'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+
+  [1m[36mForeign Keys (265.3ms)[0m  [1m SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'MSI_QUERY_PROPERTIES'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+[0m
+  [1m[35mForeign Keys (282.3ms)[0m   SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'PUB_PERSIST'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+
+  [1m[36mForeign Keys (377.8ms)[0m  [1m SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'SDE_LOGFILE_DATA'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+[0m
+  [1m[35mForeign Keys (265.0ms)[0m   SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'SDE_LOGFILES'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+
+  [1m[36mForeign Keys (254.0ms)[0m  [1m SELECT r.table_name to_table
+ ,rc.column_name references_column
+ ,cc.column_name
+ ,c.constraint_name name
+ ,c.delete_rule
+ FROM user_constraints c, user_cons_columns cc,
+ user_constraints r, user_cons_columns rc
+ WHERE c.owner = 'NSS'
+ AND c.table_name = 'TXT_FILES'
+ AND c.constraint_type = 'R'
+ AND cc.owner = c.owner
+ AND cc.constraint_name = c.constraint_name
+ AND r.constraint_name = c.r_constraint_name
+ AND r.owner = c.owner
+ AND rc.owner = r.owner
+ AND rc.constraint_name = r.constraint_name
+ AND rc.position = cc.position
+ ORDER BY name, to_table, column_name, references_column
+[0m
+  [1m[35m (1438.1ms)[0m  SELECT synonym_name, table_owner, table_name, db_link FROM user_synonyms
+  [1m[36mAsamMaster Load (979.4ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11[0m
+  [1m[35m (10568.1ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (254.4ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (876.6ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36mAsamMaster Load (1564.4ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11[0m
+  [1m[35mAsamMaster Load (1065.0ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36mAsamMaster Load (908.7ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11[0m
+  [1m[35mAsamMaster Load (1463.5ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE (11)
+OCIError: ORA-00920: invalid relational operator: SELECT "ASAM_MASTER".* FROM "ASAM_MASTER"  WHERE (11)
+  [1m[36mAsamMaster Load (1118.4ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11[0m
+  [1m[35mAsamMaster Load (1326.6ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36mActiveRecord::SchemaMigration Load (2112.6ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (24351.5ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (687789.5ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (453.9ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (1547.3ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (596.6ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (483.9ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (1317.7ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (532.0ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (1410.2ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (10516.2ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (548.7ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (496.7ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (2554.4ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (600.3ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (321.6ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (766.4ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (404.4ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (222.6ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (748.8ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (244.4ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (275.1ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (916.5ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (372.3ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (246.6ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (663.8ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (234.4ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (823.0ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (5117.9ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (313.8ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (358.3ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (1109.0ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (389.9ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (1288.3ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (7298.3ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (406.4ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (386.7ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (1211.7ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (5418.6ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (1017.2ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (6546.4ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (403.1ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (464.5ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (767.8ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (456.2ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (1025.2ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (13639.0ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (531.9ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (262.1ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (1004.9ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (301.5ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (1186.5ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (7850.8ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (404.5ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (350.5ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (1229.8ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (347.5ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (1241.6ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (7517.4ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (509.9ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (358.1ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (1182.2ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (507.7ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (1991.7ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (7879.6ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (403.7ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (371.1ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (1242.8ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (503.2ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (1266.1ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (8202.3ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (481.1ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (775.4ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (4391.6ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (685.8ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (866.9ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (7401.1ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (872.6ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (622.1ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (1776.1ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (849.9ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35mAsamMaster Load (2338.9ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = 11
+  [1m[36m (14109.9ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (893.0ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+  [1m[36mActiveRecord::SchemaMigration Load (164.9ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (826.8ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (875.0ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (37.6ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (127.6ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (50.5ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m

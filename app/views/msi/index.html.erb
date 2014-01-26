@@ -1,0 +1,16 @@
+<%= render 'layouts/msi_header' %>
+<table style="border-spacing: 0; padding: 0; border: 0">
+  <tr>
+    <td style="width: 145px; background-color: #cccccc; border-spacing: 0; padding: 0; border: 0; vertical-align: top">
+      <%= render 'layouts/msi_leftnav' %>
+    </td>
+    <td style="width: 638px; border-spacing: 0; padding: 0; border: 0; vertical-align: top">
+      <%= this_site = $sites_path + 'MSISiteContent/Articles/MaritimeSafetyInformation.html'
+          render :file => this_site %>
+    </td>
+  </tr>
+</table>
+
+<div id="msifooter" style="clear: left">
+  <%= render 'layouts/msi_footer' %>
+</div>

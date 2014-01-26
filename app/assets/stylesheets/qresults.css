@@ -1,0 +1,213 @@
+
+<!--
+a:link {
+    color: #666666 !important;
+}
+
+a:visited {
+    color: #666666 !important;
+}
+
+a:hover {
+    color: #666666 !important;
+    font-weight: bold !important;
+}
+
+a:active {
+    color: #666666 !important;
+}
+
+pre {
+    white-space: -moz-pre-wrap;  /* Mozilla, supported since 1999 */
+    white-space: -pre-wrap;      /* Opera 4 - 6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    white-space: pre-wrap;       /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+    word-wrap: break-word;       /* IE 5.5+ */
+}
+
+.nga-resultsMainTable {
+    border:2px solid #CCCCCC;
+}
+
+.nga-resultsParamTable {
+    border-bottom:2px solid #CCCCCC !important;
+    padding-bottom:2px !important;
+}
+
+.nga-resultsTitle {
+    padding:5px !important;
+    background-color:#EEEEEE !important;
+    border-bottom:2px solid #CCCCCC !important;
+    font-weight:bold !important;
+    font-variant:small-caps !important;
+    font-size:13pt !important;
+    text-align:center !important;
+    font-family:Times, serif !important;
+}
+
+.nga-resultsParam {
+    padding:5px !important;
+    color:#666666 !important;
+    font-size:12pt !important;
+    font-family:Times, serif !important;
+}
+
+.nga-resultsHead {
+    padding:5px !important;
+    background-color:#EEEEEE !important;
+    border-bottom:2px solid #CCCCCC !important;
+    font-weight:bold !important;
+    font-size:10pt !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+.nga-resultsHeadNoBorder {
+    padding:5px !important;
+    background-color:#EEEEEE !important;
+    font-weight:bold !important;
+    font-size:10pt !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+
+.nga-resultsHeadNoBold {
+    padding:5px !important;
+    background-color:#EEEEEE !important;
+    border-bottom:2px solid #CCCCCC !important;
+    font-size:10pt !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+.nga-resultsHeadNoBorderNoBold {
+    padding:5px !important;
+    background-color:#EEEEEE !important;
+    font-size:10pt !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+
+.nga-resultsNumber {
+    padding:5px !important;
+    color:#666666 !important;
+    font-weight:bold !important;
+    font-size:11pt !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+
+.nga-resultsData {
+    padding:5px !important;
+    color:#666666 !important;
+    font-size:10pt !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+
+.nga-resultsDataBold {
+    padding:5px !important;
+    color:#666666 !important;
+    font-size:10pt !important;
+    font-weight:bold !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+
+.nga-resultsDataItal {
+    padding:5px !important;
+    color:#666666 !important;
+    font-size:10pt !important;
+    font-style:italic !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+
+.nga-resultsCourier {
+    padding:5px !important;
+    color:#666666 !important;
+    font-size:10pt !important;
+    font-family:"Courier New", Courier, mono !important;
+}
+
+.nga-resultsCourierBold {
+    padding:5px !important;
+    color:#666666 !important;
+    font-size:10pt !important;
+    font-weight:bold !important;
+    font-family:"Courier New", Courier, mono !important;
+}
+
+.nga-resultsNone {
+    padding:10px !important;
+    color:#666666 !important;
+    font-weight:bold !important;
+    font-size:11pt !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+
+.nga-resultsSpacer {
+    padding:5px !important;
+    background-color:#EEEEEE !important;
+    border-top:2px solid #CCCCCC !important;
+}
+.nga-resultsParamBold {
+    color:#000000 !important;
+    font-size:10pt !important;
+    font-weight:bold !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+.nga-resultsParamBoldColor {
+    color:#666666 !important;
+    font-size:10pt !important;
+    font-weight:bold !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+.nga-resultsNote {
+    padding:5px !important;
+    background-color:#FFFFFF !important;
+    border-bottom:2px solid #CCCCCC !important;
+    color:#000000 !important;
+    font-size:10pt !important;
+    font-weight:normal !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+.nga-resultsNoteNoBorder {
+    padding:10px !important;
+    font-size:12pt !important;
+    font-weight:normal !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+}
+.nga-resultsItalic {
+    color:#666666 !important;
+    font-size:10pt !important;
+    font-weight:normal !important;
+    font-family:Arial, Helvetica, Sans-Serif !important;
+    font-style: italic
+}
+
+.nga-rowLine{
+    border-bottom:1px solid #CCCCCC !important;
+}
+
+
+.nga-footerLine {
+    background-color: #666666 !important
+}
+
+.nga-footerLineLight {
+    background-color: #CCCCCC !important
+}
+
+.nga-footerText {
+    font-size: 11px !important;
+    font-weight: normal !important;
+    text-decoration: none !important;
+    color: #333333 !important
+}
+
+.nga-footerLink {
+    font-size: 11px !important;
+    font-weight: normal !important;
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    text-decoration: underline !important;
+    color: #333333 !important
+}
+
+.nga-footerLink:hover {
+    font-size: 11px !important;
+    font-weight: normal !important;
+    font-family: Verdana, Arial, Helvetica, sans-serif !important;
+    text-decoration: none !important;
+    color: #333333 !important
+}

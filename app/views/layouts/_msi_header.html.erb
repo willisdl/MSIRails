@@ -1,0 +1,45 @@
+<html>
+<%= stylesheet_link_tag 'nga_stylesheet' %>
+<map id="topLogoMap" name="topLogoMap">
+  <area shape="circle" coords="38,28,29" href="http://www1.nga.mil/" alt="Click to visit NGA home." target="_top">
+  <area shape="rect" coords="74,0,314,15" href="http://www1.nga.mil/" alt="Click to visit NGA home." target="_top">
+</map>
+
+<table border="0" style="padding: 0; border-spacing: 0; width: 765px">
+  <tr style="background-color: black">
+    <td ><img usemap="#topLogoMap" border="0" src="/assets/nga_banner_top.gif" alt="Top portion of NGA banner." /></td>
+    <td><img src="/assets/nga_banner_top_clip.gif" alt="Clip image for NGA banner."></td>
+  </tr>
+</table>
+<table border="0" style="padding: 0; border-spacing: 0; width: 778px">
+  <tr>
+    <td style="width: 143px; background-color: #cccccc">&nbsp;</td>
+    <td style="text-align: right">
+      <div class="siteControls">
+        <table border="0" class="epi-font2" style="padding: 0; border-spacing: 0">
+          <tr style="text-align: right">
+            <td style="width: 400px" />
+            <!-- Home link (to Maritime) -->
+            <td style="white-space: nowrap"><%= link_to 'Home', msi_index_path, class: 'nga-headerLink' %></td>
+
+            <!-- FAQ link -->
+            <td><img src="/assets/spacer.gif" border="0" alt="spacer" /></td>
+            <td style="white-space: nowrap"><a href="#" class="nga-headerLink">FAQ</a></td>
+
+            <!-- Contact Info link -->
+            <td ><img src="/assets/spacer.gif" border="0" alt=" "  /></td>
+            <td style="white-space: nowrap"><a href="#" class="nga-headerLink">Contact Info</a></td>
+
+            <!-- Related Links link -->
+            <td ><img src="/assets/spacer.gif" border="0" alt=" " /></td>
+            <td style="white-space: nowrap"><a href="#" class="nga-headerLink">Related Links</a></td>
+
+
+            <td><img src="/assets/spacer.gif" border="0" alt="space" width="10" /></td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+</html>
