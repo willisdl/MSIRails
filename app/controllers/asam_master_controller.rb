@@ -34,6 +34,7 @@ class AsamMasterController < ApplicationController
   end
 
   def asam_query
+    asam_model = AsamMaster.new
     msi_query_type = params[:MSI_queryType]
     msi_filter_type = params[:MSI_generalFilterType]
     msi_filter_value = params[:MSI_generalFilterValue]
@@ -52,25 +53,45 @@ class AsamMasterController < ApplicationController
     #Search ASAMs with no criteria selected - return ALL ASAM messages
     if msi_filter_type == 'All'
       #Sort by date of message
-      if msi_sort_value.include? "Date"
-        sort_ord = "occur_date DESC" if msi_sort_value.include? "DESC"
-        sort_ord = "occur_date ASC" if msi_sort_value.include? "ASC"
+      if msi_sort_value.include? 'Date'
+        sort_ord = 'occur_date DESC' if msi_sort_value.include? 'DESC'
+        sort_ord = 'occur_date ASC' if msi_sort_value.include? 'ASC'
         @searchparam[0] = 'All Anti-Shipping Activity Messages'
         @searchparam[1] = msi_filter_value
         @searchparam[2] = 'None'
-        @searchparam[3] = 'Descending Date of Occurrence' if msi_sort_value.include? "DESC"
-        @searchparam[3] = 'Ascending Date of Occurrence' if msi_sort_value.include? "ASC"
-        @asams = AsamMaster.order(sort_ord)
+        @searchparam[3] = 'Descending Date of Occurrence' if msi_sort_value.include? 'DESC'
+        @searchparam[3] = 'Ascending Date of Occurrence' if msi_sort_value.include? 'ASC'
+        if msi_filter_type1 == 'SpecificDate'
+          asamdate = DateTime.parse(msi_filter_value1)
+          @asams = asam_model.where(occur_date: asamdate).order(sort_ord)
+        elsif msi_filter_type1 == 'DateRange'
+          asamdate = msi_filter_value1.split(':')
+          date1 = DateTime.parse(asamdate[0])
+          date2 = DateTime.parse(asamdate[1])
+          @asams = asam_model.where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+        else
+          @asams = asam_model.order(sort_ord)
+        end
       #Sort by reference number
-      elsif msi_sort_value.include? "Number"
-        sort_ord = "tx_yyyy DESC, tx_num DESC" if msi_sort_value.include? "DESC"
-        sort_ord = "tx_yyyy ASC, tx_num ASC" if msi_sort_value.include? "ASC"
+      elsif msi_sort_value.include? 'Number'
+        sort_ord = 'tx_yyyy DESC, tx_num DESC' if msi_sort_value.include? 'DESC'
+        sort_ord = 'tx_yyyy ASC, tx_num ASC' if msi_sort_value.include? 'ASC'
         @searchparam[0] = 'All Anti-Shipping Activity Messages'
         @searchparam[1] = msi_filter_value
         @searchparam[2] = 'None'
-        @searchparam[3] = 'Descending ASAM Ref. Number' if msi_sort_value.include? "DESC"
-        @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? "ASC"
-        @asams = AsamMaster.order(sort_ord)
+        @searchparam[3] = 'Descending ASAM Ref. Number' if msi_sort_value.include? 'DESC'
+        @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? 'ASC'
+        if msi_filter_type1 == 'SpecificDate'
+          asamdate = DateTime.parse(msi_filter_value1)
+          @asams = asam_model.where(occur_date: asamdate).order(sort_ord)
+        elsif msi_filter_type1 == 'DateRange'
+          asamdate = msi_filter_value1.split(':')
+          date1 = DateTime.parse(asamdate[0])
+          date2 = DateTime.parse(asamdate[1])
+          @asams = asam_model.where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+        else
+          @asams = asam_model.order(sort_ord)
+        end
       end
     end
 
@@ -79,25 +100,45 @@ class AsamMasterController < ApplicationController
     #
     if msi_filter_type == 'Subregion'
       #Sort by date
-      if msi_sort_value.include? "Date"
-        sort_ord = "occur_date DESC" if msi_sort_value.include? "DESC"
-        sort_ord = "occur_date ASC" if msi_sort_value.include? "ASC"
+      if msi_sort_value.include? 'Date'
+        sort_ord = 'occur_date DESC' if msi_sort_value.include? 'DESC'
+        sort_ord = 'occur_date ASC' if msi_sort_value.include? 'ASC'
         @searchparam[0] = 'ASAMs by Subregion'
         @searchparam[1] = msi_filter_value
         @searchparam[2] = 'None'
-        @searchparam[3] = 'Descending Date of Occurrence' if msi_sort_value.include? "DESC"
-        @searchparam[3] = 'Ascending Date of Occurrence' if msi_sort_value.include? "ASC"
-        @asams = AsamMaster.where(subregion: msi_filter_value).order(sort_ord)
+        @searchparam[3] = 'Descending Date of Occurrence' if msi_sort_value.include? 'DESC'
+        @searchparam[3] = 'Ascending Date of Occurrence' if msi_sort_value.include? 'ASC'
+        if msi_filter_type1 == 'SpecificDate'
+          asamdate = DateTime.parse(msi_filter_value1)
+          @asams = asam_model.where(subregion: msi_filter_value).where(occur_date: asamdate).order(sort_ord)
+        elsif msi_filter_type1 == 'DateRange'
+          asamdate = msi_filter_value1.split(':')
+          date1 = DateTime.parse(asamdate[0])
+          date2 = DateTime.parse(asamdate[1])
+          @asams = asam_model.where(subregion: msi_filter_value).where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+        else
+          @asams = asam_model.where(subregion: msi_filter_value).order(sort_ord)
+        end
       #Sort by ref number
-      elsif msi_sort_value.include? "Number"
-        sort_ord = "tx_yyyy DESC, tx_num DESC" if msi_sort_value.include? "DESC"
-        sort_ord = "tx_yyyy ASC, tx_num ASC" if msi_sort_value.include? "ASC"
+      elsif msi_sort_value.include? 'Number'
+        sort_ord = 'tx_yyyy DESC, tx_num DESC' if msi_sort_value.include? 'DESC'
+        sort_ord = 'tx_yyyy ASC, tx_num ASC' if msi_sort_value.include? 'ASC'
         @searchparam[0] = 'ASAMs by Subregion'
         @searchparam[1] = msi_filter_value
         @searchparam[2] = 'None'
-        @searchparam[3] = 'Descending ASAM Ref. Number' if msi_sort_value.include? "DESC"
-        @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? "ASC"
-        @asams = AsamMaster.where(subregion: msi_filter_value).order(sort_ord)
+        @searchparam[3] = 'Descending ASAM Ref. Number' if msi_sort_value.include? 'DESC'
+        @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? 'ASC'
+        if msi_filter_type1 == 'SpecificDate'
+          asamdate = DateTime.parse(msi_filter_value1)
+          @asams = asam_model.where(subregion: msi_filter_value).where(occur_date: asamdate).order(sort_ord)
+        elsif msi_filter_type1 == 'DateRange'
+          asamdate = msi_filter_value1.split(':')
+          date1 = DateTime.parse(asamdate[0])
+          date2 = DateTime.parse(asamdate[1])
+          @asams = asam_model.where(subregion: msi_filter_value).where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+        else
+          @asams = asam_model.where(subregion: msi_filter_value).order(sort_ord)
+        end
       end
     end
 
@@ -113,7 +154,17 @@ class AsamMasterController < ApplicationController
       @searchparam[3] = 'Descending ASAM Ref. Number' if msi_sort_value.include? "Number DESC"
       @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? "Number ASC"
       ref = msi_filter_value.split('_')
-      @asams = AsamMaster.where(tx_yyyy: ref[0]).where(tx_num: ref[1])
+      if msi_filter_type1 == 'SpecificDate'
+        asamdate = DateTime.parse(msi_filter_value1)
+        @asams = asam_model.where(tx_yyyy: ref[0]).where(tx_num: ref[1]).where(occur_date: asamdate)
+      elsif msi_filter_type1 == 'DateRange'
+        asamdate = msi_filter_value1.split(':')
+        date1 = DateTime.parse(asamdate[0])
+        date2 = DateTime.parse(asamdate[1])
+        @asams = asam_model.where(tx_yyyy: ref[0]).where(tx_num: ref[1]).where("occur_date >= #{date1} and occur_date <= #{date2}")
+      else
+        @asams = asam_model.where(tx_yyyy: ref[0]).where(tx_num: ref[1])
+      end
     end
 
     #
@@ -123,14 +174,14 @@ class AsamMasterController < ApplicationController
       #
       #Sort by Date
       #
-      if msi_sort_value.include? "Date"
-        sort_ord = "occur_date DESC" if msi_sort_value.include? "DESC"
-        sort_ord = "occur_date ASC" if msi_sort_value.include? "ASC"
+      if msi_sort_value.include? 'Date'
+        sort_ord = 'occur_date DESC' if msi_sort_value.include? 'DESC'
+        sort_ord = 'occur_date ASC' if msi_sort_value.include? 'ASC'
         @searchparam[0] = 'ASAMs by Subregion'
         @searchparam[1] = msi_filter_value
         @searchparam[2] = 'None'
-        @searchparam[3] = 'Descending Date of Occurrence' if msi_sort_value.include? "DESC"
-        @searchparam[3] = 'Ascending Date of Occurrence' if msi_sort_value.include? "ASC"
+        @searchparam[3] = 'Descending Date of Occurrence' if msi_sort_value.include? 'DESC'
+        @searchparam[3] = 'Ascending Date of Occurrence' if msi_sort_value.include? 'ASC'
         #Number range is passed in format yyyy_nn:yyyy_nn, must be parsed
         #ref1 = from, ref2 = to, 0 = yyyy, 1 = nn
         ref = msi_filter_value.split(':')
@@ -141,72 +192,72 @@ class AsamMasterController < ApplicationController
         @asams = Array.new
 
         #Sort descending
-        if msi_sort_value.include? "DESC"
+        if msi_sort_value.include? 'DESC'
           #retrieve range fo ref. numbers from 'to' year
-          @asams = AsamMaster.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}").order(sort_ord)
+          @asams = asam_model.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}").order(sort_ord)
           #determine number of years spanned by query, and retrieve years between first and last years
           #starting from most recent and working backwards
           if year2 - year1 > 1
             range = year2 - year1 - 1
             (range..1).each do |i|
               thisyear = year1 + i
-              @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}").order(sort_ord)
+              @asams = @asams + asam_model.where("tx_yyyy = #{thisyear}").order(sort_ord)
             end
           end
           #retrieve range of ref numbers from 'from' year
-          @asams = @asams + AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}")
+          @asams = @asams + asam_model.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}")
           #sort concatenated results by date descending
           @asams = @asams.sort {|a,b| b.occur_date <=> a.occur_date}
         end
 
         # Sort Ascending
-        if msi_sort_value.include? "ASC"
+        if msi_sort_value.include? 'ASC'
           #retrieve range of ref numbers from 'from' year
-          @asams = AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}").order(sort_ord)
+          @asams = asam_model.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}").order(sort_ord)
           #determine number of years spanned by query, and retrieve years between first and last years
           #starting from most recent and working forwards
           if year2 - year1 > 1
             range = year2 - year1 - 1
             (1..range).each do |i|
               thisyear = year1 + i
-              @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}").order(sort_ord)
+              @asams = @asams + asam_model.where("tx_yyyy = #{thisyear}").order(sort_ord)
             end
           end
           #retrieve range fo ref. numbers from 'to' year
-          @asams = @asams + AsamMaster.where("tx_yyyy = #{year2} and tx_num >= #{ref2[1]}")
+          @asams = @asams + asam_model.where("tx_yyyy = #{year2} and tx_num >= #{ref2[1]}")
           #sort concatenated results by date ascending
           @asams = @asams.sort {|a,b| a.occur_date <=> b.occur_date}
         end
       #
       # Sort by ref number
       #
-      elsif msi_sort_value.include? "Number"
-        sort_ord = "tx_yyyy DESC, tx_num DESC" if msi_sort_value.include? "DESC"
-        sort_ord = "tx_yyyy ASC, tx_num ASC" if msi_sort_value.include? "ASC"
+      elsif msi_sort_value.include? 'Number'
+        sort_ord = 'tx_yyyy DESC, tx_num DESC' if msi_sort_value.include? 'DESC'
+        sort_ord = 'tx_yyyy ASC, tx_num ASC' if msi_sort_value.include? 'ASC'
         @searchparam[0] = 'ASAMs by Subregion'
         @searchparam[1] = msi_filter_value
         @searchparam[2] = 'None'
-        @searchparam[3] = 'Descending ASAM Ref. Number' if msi_sort_value.include? "DESC"
-        @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? "ASC"
+        @searchparam[3] = 'Descending ASAM Ref. Number' if msi_sort_value.include? 'DESC'
+        @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? 'ASC'
         ref = msi_filter_value.split(':')
         ref1 = ref[0].split('_')
         ref2 = ref[1].split('_')
         year1 = ref1[0].to_i
         year2 = ref2[0].to_i
         @asams = Array.new
-        @asams = AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}")
+        @asams = asam_model.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}")
         if year2 - year1 > 1
           range = year2 - year1 - 1
           (1..range).each do |i|
             thisyear = year1 + i
-            @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}")
+            @asams = @asams + asam_model.where("tx_yyyy = #{thisyear}")
           end
         end
-        @asams = @asams + AsamMaster.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}")
+        @asams = @asams + asam_model.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}")
 
-        if msi_sort_value.include? "DESC" #sort descending
+        if msi_sort_value.include? 'DESC' #sort descending
           @asams = @asams.sort_by {|a| [a.tx_yyyy, a.tx_num]}.reverse!
-        elsif msi_sort_value.include? "ASC" #sort ascending
+        elsif msi_sort_value.include? 'ASC' #sort ascending
           @asams = @asams.sort_by {|a| [a.tx_yyyy, a.tx_num]}
         end
       end
@@ -219,20 +270,20 @@ class AsamMasterController < ApplicationController
       @searchparam[0] = "Victim's Name"
       @searchparam[1] = msi_filter_value
       @searchparam[2] = 'None'
-      @searchparam[3] = 'Descending Date of Occurrence' if msi_sort_value.include? "Date DESC"
-      @searchparam[3] = 'Ascending Date of Occurrence' if msi_sort_value.include? "Date ASC"
-      @searchparam[3] = 'Descending ASAM Ref. Number' if msi_sort_value.include? "Number DESC"
-      @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? "Number ASC"
-      sort_ord = "occur_date DESC" if msi_sort_value.include? "Date DESC"
-      sort_ord = "occur_date ASC" if msi_sort_value.include? "Date ASC"
-      sort_ord = "tx_yyyy DESC, tx_num DESC" if msi_sort_value.include? "Number DESC"
-      sort_ord = "tx_yyyy ASC, tx_num ASC" if msi_sort_value.include? "Number ASC"
+      @searchparam[3] = 'Descending Date of Occurrence' if msi_sort_value.include? 'Date DESC'
+      @searchparam[3] = 'Ascending Date of Occurrence' if msi_sort_value.include? 'Date ASC'
+      @searchparam[3] = 'Descending ASAM Ref. Number' if msi_sort_value.include? 'Number DESC'
+      @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? 'Number ASC'
+      sort_ord = 'occur_date DESC' if msi_sort_value.include? 'Date DESC'
+      sort_ord = 'occur_date ASC' if msi_sort_value.include? 'Date ASC'
+      sort_ord = 'tx_yyyy DESC, tx_num DESC' if msi_sort_value.include? 'Number DESC'
+      sort_ord = 'tx_yyyy ASC, tx_num ASC' if msi_sort_value.include? 'Number ASC'
       name = msi_filter_value.downcase
       if msi_filter_type1 == 'SpecificDate'
         asamdate = DateTime.parse(msi_filter_value1)
-        @asams = AsamMaster.where('lower(victim) = ?', name).where(occur_date: asamdate).order(sort_ord)
+        @asams = asam_model.where('lower(victim) = ?', name).where(occur_date: asamdate).order(sort_ord)
       else
-        @asams = AsamMaster.where('lower(victim) = ?', name).order(sort_ord)
+        @asams = asam_model.where('lower(victim) = ?', name).order(sort_ord)
       end
 
 
