@@ -149,10 +149,10 @@ class AsamMasterController < ApplicationController
       @searchparam[0] = 'ASAMs by Subregion'
       @searchparam[1] = msi_filter_value
       @searchparam[2] = 'None'
-      @searchparam[3] = 'Descending Date of Occurrence' if msi_sort_value.include? "Date DESC"
-      @searchparam[3] = 'Ascending Date of Occurrence' if msi_sort_value.include? "Date ASC"
-      @searchparam[3] = 'Descending ASAM Ref. Number' if msi_sort_value.include? "Number DESC"
-      @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? "Number ASC"
+      @searchparam[3] = 'Descending Date of Occurrence' if msi_sort_value.include? 'Date DESC'
+      @searchparam[3] = 'Ascending Date of Occurrence' if msi_sort_value.include? 'Date ASC'
+      @searchparam[3] = 'Descending ASAM Ref. Number' if msi_sort_value.include? 'Number DESC'
+      @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? 'Number ASC'
       ref = msi_filter_value.split('_')
       if msi_filter_type1 == 'SpecificDate'
         asamdate = DateTime.parse(msi_filter_value1)
