@@ -10,14 +10,13 @@ describe 'AsamMaster' do
 
   it "should return VANDERPOOL EXPRESS" do
     @asams[0].victim.should == "VANDERPOOL EXPRESS"
-    $stdout.puts "Latitude = " + @asams[0].latitude.to_s
   end
 
   it "should return coordinates of VANDERPOOL EXPRESS" do
     vanderpool = @asams[0].str_lat
-    vanderpool[0].should == 25
-    vanderpool[1].should == 47
-    vanderpool[2].should == 00
+    vanderpool[0].should == '25'
+    vanderpool[1].should == '47'
+    vanderpool[2].should == '00'
     vanderpool[3].should == 'N'
   end
 

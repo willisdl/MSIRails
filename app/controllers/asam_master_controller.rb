@@ -3,38 +3,38 @@ class AsamMasterController < ApplicationController
   end
 
   def asam
-    @subregions = Array.new
+    subregions = Array.new
     (11..19).each do |region|
-      @subregions.push(["Subregion #{region}", region])
+      subregions.push(["Subregion #{region}", region])
     end
     (21..29).each do |region|
-      @subregions.push(["Subregion #{region}", region])
+      subregions.push(["Subregion #{region}", region])
     end
     (35..38).each do |region|
-      @subregions.push(["Subregion #{region}", region])
+      subregions.push(["Subregion #{region}", region])
     end
     (41..44).each do |region|
-      @subregions.push(["Subregion #{region}", region])
+      subregions.push(["Subregion #{region}", region])
     end
     (51..57).each do |region|
-      @subregions.push(["Subregion #{region}", region])
+      subregions.push(["Subregion #{region}", region])
     end
     (61..63).each do |region|
-      @subregions.push(["Subregion #{region}", region])
+      subregions.push(["Subregion #{region}", region])
     end
     (71..76).each do |region|
-      @subregions.push(["Subregion #{region}", region])
+      subregions.push(["Subregion #{region}", region])
     end
     (81..83).each do |region|
-      @subregions.push(["Subregion #{region}", region])
+      subregions.push(["Subregion #{region}", region])
     end
     (91..97).each do |region|
-      @subregions.push(["Subregion #{region}", region])
+      subregions.push(["Subregion #{region}", region])
     end
+    @subregions = subregions
   end
 
   def asam_query
-    asam_model = AsamMaster.new
     msi_query_type = params[:MSI_queryType]
     msi_filter_type = params[:MSI_generalFilterType]
     msi_filter_value = params[:MSI_generalFilterValue]
@@ -50,6 +50,7 @@ class AsamMasterController < ApplicationController
     @searchparam = Array.new
     sort_ord = ''
 
+
     #Search ASAMs with no criteria selected - return ALL ASAM messages
     if msi_filter_type == 'All'
       #Sort by date of message
@@ -63,14 +64,14 @@ class AsamMasterController < ApplicationController
         @searchparam[3] = 'Ascending Date of Occurrence' if msi_sort_value.include? 'ASC'
         if msi_filter_type1 == 'SpecificDate'
           asamdate = DateTime.parse(msi_filter_value1)
-          @asams = asam_model.where(occur_date: asamdate).order(sort_ord)
+          @asams = AsamMaster.where(occur_date: asamdate).order(sort_ord)
         elsif msi_filter_type1 == 'DateRange'
           asamdate = msi_filter_value1.split(':')
           date1 = DateTime.parse(asamdate[0])
           date2 = DateTime.parse(asamdate[1])
-          @asams = asam_model.where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+          @asams = AsamMaster.where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
         else
-          @asams = asam_model.order(sort_ord)
+          @asams = AsamMaster.order(sort_ord)
         end
       #Sort by reference number
       elsif msi_sort_value.include? 'Number'
@@ -83,14 +84,14 @@ class AsamMasterController < ApplicationController
         @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? 'ASC'
         if msi_filter_type1 == 'SpecificDate'
           asamdate = DateTime.parse(msi_filter_value1)
-          @asams = asam_model.where(occur_date: asamdate).order(sort_ord)
+          @asams = AsamMaster.where(occur_date: asamdate).order(sort_ord)
         elsif msi_filter_type1 == 'DateRange'
           asamdate = msi_filter_value1.split(':')
           date1 = DateTime.parse(asamdate[0])
           date2 = DateTime.parse(asamdate[1])
-          @asams = asam_model.where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+          @asams = AsamMaster.where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
         else
-          @asams = asam_model.order(sort_ord)
+          @asams = AsamMaster.order(sort_ord)
         end
       end
     end
@@ -110,14 +111,14 @@ class AsamMasterController < ApplicationController
         @searchparam[3] = 'Ascending Date of Occurrence' if msi_sort_value.include? 'ASC'
         if msi_filter_type1 == 'SpecificDate'
           asamdate = DateTime.parse(msi_filter_value1)
-          @asams = asam_model.where(subregion: msi_filter_value).where(occur_date: asamdate).order(sort_ord)
+          @asams = AsamMaster.where(subregion: msi_filter_value).where(occur_date: asamdate).order(sort_ord)
         elsif msi_filter_type1 == 'DateRange'
           asamdate = msi_filter_value1.split(':')
           date1 = DateTime.parse(asamdate[0])
           date2 = DateTime.parse(asamdate[1])
-          @asams = asam_model.where(subregion: msi_filter_value).where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+          @asams = AsamMaster.where(subregion: msi_filter_value).where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
         else
-          @asams = asam_model.where(subregion: msi_filter_value).order(sort_ord)
+          @asams = AsamMaster.where(subregion: msi_filter_value).order(sort_ord)
         end
       #Sort by ref number
       elsif msi_sort_value.include? 'Number'
@@ -130,14 +131,14 @@ class AsamMasterController < ApplicationController
         @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? 'ASC'
         if msi_filter_type1 == 'SpecificDate'
           asamdate = DateTime.parse(msi_filter_value1)
-          @asams = asam_model.where(subregion: msi_filter_value).where(occur_date: asamdate).order(sort_ord)
+          @asams = AsamMaster.where(subregion: msi_filter_value).where(occur_date: asamdate).order(sort_ord)
         elsif msi_filter_type1 == 'DateRange'
           asamdate = msi_filter_value1.split(':')
           date1 = DateTime.parse(asamdate[0])
           date2 = DateTime.parse(asamdate[1])
-          @asams = asam_model.where(subregion: msi_filter_value).where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+          @asams = AsamMaster.where(subregion: msi_filter_value).where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
         else
-          @asams = asam_model.where(subregion: msi_filter_value).order(sort_ord)
+          @asams = AsamMaster.where(subregion: msi_filter_value).order(sort_ord)
         end
       end
     end
@@ -156,14 +157,14 @@ class AsamMasterController < ApplicationController
       ref = msi_filter_value.split('_')
       if msi_filter_type1 == 'SpecificDate'
         asamdate = DateTime.parse(msi_filter_value1)
-        @asams = asam_model.where(tx_yyyy: ref[0]).where(tx_num: ref[1]).where(occur_date: asamdate)
+        @asams = AsamMaster.where(tx_yyyy: ref[0]).where(tx_num: ref[1]).where(occur_date: asamdate)
       elsif msi_filter_type1 == 'DateRange'
         asamdate = msi_filter_value1.split(':')
         date1 = DateTime.parse(asamdate[0])
         date2 = DateTime.parse(asamdate[1])
-        @asams = asam_model.where(tx_yyyy: ref[0]).where(tx_num: ref[1]).where("occur_date >= #{date1} and occur_date <= #{date2}")
+        @asams = AsamMaster.where(tx_yyyy: ref[0]).where(tx_num: ref[1]).where("occur_date >= #{date1} and occur_date <= #{date2}")
       else
-        @asams = asam_model.where(tx_yyyy: ref[0]).where(tx_num: ref[1])
+        @asams = AsamMaster.where(tx_yyyy: ref[0]).where(tx_num: ref[1])
       end
     end
 
@@ -194,18 +195,18 @@ class AsamMasterController < ApplicationController
         #Sort descending
         if msi_sort_value.include? 'DESC'
           #retrieve range fo ref. numbers from 'to' year
-          @asams = asam_model.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}").order(sort_ord)
+          @asams = AsamMaster.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}").order(sort_ord)
           #determine number of years spanned by query, and retrieve years between first and last years
           #starting from most recent and working backwards
           if year2 - year1 > 1
             range = year2 - year1 - 1
             (range..1).each do |i|
               thisyear = year1 + i
-              @asams = @asams + asam_model.where("tx_yyyy = #{thisyear}").order(sort_ord)
+              @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}").order(sort_ord)
             end
           end
           #retrieve range of ref numbers from 'from' year
-          @asams = @asams + asam_model.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}")
+          @asams = @asams + AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}")
           #sort concatenated results by date descending
           @asams = @asams.sort {|a,b| b.occur_date <=> a.occur_date}
         end
@@ -213,18 +214,18 @@ class AsamMasterController < ApplicationController
         # Sort Ascending
         if msi_sort_value.include? 'ASC'
           #retrieve range of ref numbers from 'from' year
-          @asams = asam_model.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}").order(sort_ord)
+          @asams = AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}").order(sort_ord)
           #determine number of years spanned by query, and retrieve years between first and last years
           #starting from most recent and working forwards
           if year2 - year1 > 1
             range = year2 - year1 - 1
             (1..range).each do |i|
               thisyear = year1 + i
-              @asams = @asams + asam_model.where("tx_yyyy = #{thisyear}").order(sort_ord)
+              @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}").order(sort_ord)
             end
           end
           #retrieve range fo ref. numbers from 'to' year
-          @asams = @asams + asam_model.where("tx_yyyy = #{year2} and tx_num >= #{ref2[1]}")
+          @asams = @asams + AsamMaster.where("tx_yyyy = #{year2} and tx_num >= #{ref2[1]}")
           #sort concatenated results by date ascending
           @asams = @asams.sort {|a,b| a.occur_date <=> b.occur_date}
         end
@@ -245,15 +246,15 @@ class AsamMasterController < ApplicationController
         year1 = ref1[0].to_i
         year2 = ref2[0].to_i
         @asams = Array.new
-        @asams = asam_model.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}")
+        @asams = AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}")
         if year2 - year1 > 1
           range = year2 - year1 - 1
           (1..range).each do |i|
             thisyear = year1 + i
-            @asams = @asams + asam_model.where("tx_yyyy = #{thisyear}")
+            @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}")
           end
         end
-        @asams = @asams + asam_model.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}")
+        @asams = @asams + AsamMaster.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}")
 
         if msi_sort_value.include? 'DESC' #sort descending
           @asams = @asams.sort_by {|a| [a.tx_yyyy, a.tx_num]}.reverse!
@@ -281,13 +282,14 @@ class AsamMasterController < ApplicationController
       name = msi_filter_value.downcase
       if msi_filter_type1 == 'SpecificDate'
         asamdate = DateTime.parse(msi_filter_value1)
-        @asams = asam_model.where('lower(victim) = ?', name).where(occur_date: asamdate).order(sort_ord)
+        @asams = AsamMaster.where('lower(victim) = ?', name).where(occur_date: asamdate).order(sort_ord)
       else
-        @asams = asam_model.where('lower(victim) = ?', name).order(sort_ord)
+        @asams = AsamMaster.where('lower(victim) = ?', name).order(sort_ord)
       end
 
 
     end
+
   end
 
 end
