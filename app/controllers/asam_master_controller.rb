@@ -55,8 +55,8 @@ class AsamMasterController < ApplicationController
     if msi_filter_type == 'All'
       #Sort by date of message
       if msi_sort_value.include? 'Date'
-        sort_ord = 'occur_date DESC' if msi_sort_value.include? 'DESC'
-        sort_ord = 'occur_date ASC' if msi_sort_value.include? 'ASC'
+        sort_ord = 'occur_date DESC, tx_yyyy DESC, tx_num DESC' if msi_sort_value.include? 'DESC'
+        sort_ord = 'occur_date ASC, tx_yyyy ASC, tx_num ASC' if msi_sort_value.include? 'ASC'
         @searchparam[0] = 'All Anti-Shipping Activity Messages'
         @searchparam[1] = msi_filter_value
         @searchparam[2] = 'None'
@@ -69,7 +69,8 @@ class AsamMasterController < ApplicationController
           asamdate = msi_filter_value1.split(':')
           date1 = DateTime.parse(asamdate[0])
           date2 = DateTime.parse(asamdate[1])
-          @asams = AsamMaster.where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+          #@asams = AsamMaster.where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+          @asams = AsamMaster.where(occur_date: date1..date2).order(sort_ord)
         else
           @asams = AsamMaster.order(sort_ord)
         end
@@ -137,7 +138,8 @@ class AsamMasterController < ApplicationController
           asamdate = msi_filter_value1.split(':')
           date1 = DateTime.parse(asamdate[0])
           date2 = DateTime.parse(asamdate[1])
-          @asams = AsamMaster.where(subregion: msi_filter_value).where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+          #@asams = AsamMaster.where(subregion: msi_filter_value).where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+          @asams = AsamMaster.where(subregion: msi_filter_value).where(occur_date: date1..date2).order(sort_ord)
         else
           @asams = AsamMaster.where(subregion: msi_filter_value).order(sort_ord)
         end
@@ -156,17 +158,20 @@ class AsamMasterController < ApplicationController
       @searchparam[3] = 'Descending ASAM Ref. Number' if msi_sort_value.include? 'Number DESC'
       @searchparam[3] = 'Ascending ASAM Ref. Number' if msi_sort_value.include? 'Number ASC'
       ref = msi_filter_value.split('_')
-      if msi_filter_type1 == 'SpecificDate'
-        asamdate = DateTime.parse(msi_filter_value1)
-        @asams = AsamMaster.where(tx_yyyy: ref[0]).where(tx_num: ref[1]).where(occur_date: asamdate)
-      elsif msi_filter_type1 == 'DateRange'
-        asamdate = msi_filter_value1.split(':')
-        date1 = DateTime.parse(asamdate[0])
-        date2 = DateTime.parse(asamdate[1])
-        @asams = AsamMaster.where(tx_yyyy: ref[0]).where(tx_num: ref[1]).where("occur_date >= #{date1} and occur_date <= #{date2}")
-      else
-        @asams = AsamMaster.where(tx_yyyy: ref[0]).where(tx_num: ref[1])
-      end
+      sort_ord = 'tx_yyyy DESC, tx_num DESC' if msi_sort_value.include? 'DESC'
+      sort_ord = 'tx_yyyy ASC, tx_num ASC' if msi_sort_value.include? 'ASC'
+      #  if msi_filter_type1 == 'SpecificDate'
+      #    asamdate = DateTime.parse(msi_filter_value1)
+      #    @asams = AsamMaster.where(tx_yyyy: ref[0]).where(tx_num: ref[1]).where(occur_date: asamdate)
+      #  elsif msi_filter_type1 == 'DateRange'
+      #    asamdate = msi_filter_value1.split(':')
+      #    date1 = DateTime.parse(asamdate[0])
+      #    date2 = DateTime.parse(asamdate[1])
+      #    #@asams = AsamMaster.where(tx_yyyy: ref[0]).where(tx_num: ref[1]).where("occur_date >= #{date1} and occur_date <= #{date2}")
+      #    @asams = AsamMaster.where(tx_yyyy: ref[0]).where(tx_num: ref[1]).where(occur_date: date1..date2)
+      #  else
+      @asams = AsamMaster.where(tx_yyyy: ref[0]).where(tx_num: ref[1]).order(sort_ord)
+      #  end
     end
 
     #
@@ -208,7 +213,7 @@ class AsamMasterController < ApplicationController
               @asams = AsamMaster.where("tx_yyyy = #{year1}").where(tx_num: ref1[1]..ref2[1]).order(sort_ord)
             end
           else
-            #retrieve range fo ref. numbers from 'to' year
+            #retrieve range of ref. numbers from 'to' year
             if msi_filter_type1 == 'SpecificDate'
               asamdate = DateTime.parse(msi_filter_value1)
               @asams = AsamMaster.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}").where(occur_date: asamdate).order(sort_ord)
@@ -259,7 +264,8 @@ class AsamMasterController < ApplicationController
         # Sort Ascending
         if msi_sort_value.include? 'ASC'
           if year1 == year2
-            @asams = AsamMaster.where("tx_yyyy = #{year1}").where(tx_num: ref1[1]..ref2[1]).order(sort_ord)
+            #@asams = AsamMaster.where("tx_yyyy = #{year1}").where(tx_num: ref1[1]..ref2[1]).order(sort_ord)
+            @asams = AsamMaster.where(tx_yyyy: year1).where(tx_num: ref1[1]..ref2[1]).order(sort_ord)
           else
             #retrieve range of ref numbers from 'from' year
             @asams = AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}").order(sort_ord)
@@ -269,7 +275,8 @@ class AsamMasterController < ApplicationController
               range = year2 - year1 - 1
               (1..range).each do |i|
                 thisyear = year1 + i
-                @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}").order(sort_ord)
+                #@asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}").order(sort_ord)
+                @asams = @asams + AsamMaster.where(tx_yyyy: thisyear).order(sort_ord)
               end
             end
             #retrieve range fo ref. numbers from 'to' year

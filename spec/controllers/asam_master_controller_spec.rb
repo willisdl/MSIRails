@@ -104,10 +104,18 @@ describe AsamMasterController do
       assigns(:asams)[0].tx_num.should == 336
     end
 
-    it 'should test All ASAMs date asc specificdate 18Sep08' do
+    it 'should test All ASAMs ref desc specificdate 18Sep08' do
+      $stdout.puts(">>>>Test #{i}, All ASAMs date desc specificdate 18Sep08")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'All', :MSI_outputOptionValue1 => 'Number DESC', :MSI_additionalFilterType1 => 'SpecificDate', :MSI_additionalFilterValue1 => '2008-SEP-18'}
+      assigns(:asams)[0].tx_yyyy.should == 2008
+      assigns(:asams)[0].tx_num.should == 362
+    end
+
+    it 'should test All ASAMs ref asc specificdate 18Sep08' do
       $stdout.puts(">>>>Test #{i}, All ASAMs date asc specificdate 18Sep08")
       i += 1
-      get 'asam_query', {:MSI_generalFilterType => 'All', :MSI_outputOptionValue1 => 'Date ASC', :MSI_additionalFilterType1 => 'SpecificDate', :MSI_additionalFilterValue1 => '2008-SEP-18'}
+      get 'asam_query', {:MSI_generalFilterType => 'All', :MSI_outputOptionValue1 => 'Number ASC', :MSI_additionalFilterType1 => 'SpecificDate', :MSI_additionalFilterValue1 => '2008-SEP-18'}
       assigns(:asams)[0].tx_yyyy.should == 2008
       assigns(:asams)[0].tx_num.should == 336
     end
@@ -119,40 +127,29 @@ describe AsamMasterController do
       assigns(:asams)[0].should == nil
     end
 
-    it 'should test ASAMs by ref date desc' do
-      $stdout.puts(">>>>Test #{i}, ASAMs by ref date desc")
+    it 'should test ASAMs by ref' do
+      $stdout.puts(">>>>Test #{i}, ASAMs by ref")
       i += 1
-      get 'asam_query', {:MSI_generalFilterType => 'SpecificNumber', :MSI_generalFilterValue => '2008_336', :MSI_outputOptionValue1 => 'Date DESC'}
+      get 'asam_query', {:MSI_generalFilterType => 'SpecificNumber', :MSI_outputOptionValue1 => 'Date DESC', :MSI_generalFilterValue => '2008_336'}
       assigns(:asams)[0].victim.should == 'CHEMICAL TANKER'
     end
 
-    it 'should test ASAMs by ref specific date' do
-      $stdout.puts(">>>>Test #{i}, ASAMs by ref specific date")
+    it 'should test All ASAMs by desc daterange' do
+      $stdout.puts(">>>>Test #{i}, All ASAMs by desc daterange")
       i += 1
-      get 'asam_query', {:MSI_generalFilterType => 'SpecificNumber', :MSI_generalFilterValue => '2008_336', :MSI_outputOptionValue1 => 'Date DESC', :MSI_additionalFilterType1 => 'SpecificDate', :MSI_additionalFilterValue1 => '2008-SEP-18'}
-      assigns(:asams)[0].victim.should == 'CHEMICAL TANKER'
+      get 'asam_query', {:MSI_generalFilterType => 'All', :MSI_outputOptionValue1 => 'Date DESC', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2002-JAN-01:2002-MAY-01'}
+      assigns(:asams)[0].tx_yyyy.should == 2002
+      assigns(:asams)[0].tx_num.should == 130
     end
 
-    it 'should test ASAMs by ref date range' do
-      $stdout.puts(">>>>Test #{i}, ASAMs by ref date range")
+    it 'should test All ASAMs by asc daterange' do
+      $stdout.puts(">>>>Test #{i}, All ASAMs by asc daterange")
       i += 1
-      get 'asam_query', {:MSI_generalFilterType => 'SpecificNumber', :MSI_generalFilterValue => '2008_336', :MSI_outputOptionValue1 => 'Date DESC', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2008-JAN-01:2009-JAN-01'}
-      assigns(:asams)[0].victim.should == 'CHEMICAL TANKER'
+      get 'asam_query', {:MSI_generalFilterType => 'All', :MSI_outputOptionValue1 => 'Date ASC', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2002-JAN-01:2002-MAY-01'}
+      assigns(:asams)[0].tx_yyyy.should == 2002
+      assigns(:asams)[0].tx_num.should == 2
     end
 
-    it 'should test ASAMs by ref specific date return nil' do
-      $stdout.puts(">>>>Test #{i}, ASAMs by ref specific date return nil")
-      i += 1
-      get 'asam_query', {:MSI_generalFilterType => 'SpecificNumber', :MSI_generalFilterValue => '2008_336', :MSI_outputOptionValue1 => 'Date DESC', :MSI_additionalFilterType1 => 'SpecificDate', :MSI_additionalFilterValue1 => '2009-SEP-18'}
-      assigns(:asams)[0].should == nil
-    end
-
-    it 'should test ASAMs by ref date range return nil' do
-      $stdout.puts(">>>>Test #{i}, ASAMs by ref date range return nil")
-      i += 1
-      get 'asam_query', {:MSI_generalFilterType => 'SpecificNumber', :MSI_generalFilterValue => '2008_336', :MSI_outputOptionValue1 => 'Date DESC', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2007-JAN-01:2008-JAN-01'}
-      assigns(:asams)[0].should == nil
-    end
   end
 
 end
