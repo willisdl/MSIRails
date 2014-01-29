@@ -116,7 +116,8 @@ class AsamMasterController < ApplicationController
           asamdate = msi_filter_value1.split(':')
           date1 = DateTime.parse(asamdate[0])
           date2 = DateTime.parse(asamdate[1])
-          @asams = AsamMaster.where(subregion: msi_filter_value).where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+          #@asams = AsamMaster.where(subregion: msi_filter_value).where("occur_date >= #{date1} and occur_date <= #{date2}").order(sort_ord)
+          @asams = AsamMaster.where(subregion: msi_filter_value).where(occur_date: date1..date2).order(sort_ord)
         else
           @asams = AsamMaster.where(subregion: msi_filter_value).order(sort_ord)
         end
@@ -194,40 +195,88 @@ class AsamMasterController < ApplicationController
 
         #Sort descending
         if msi_sort_value.include? 'DESC'
-          #retrieve range fo ref. numbers from 'to' year
-          @asams = AsamMaster.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}").order(sort_ord)
-          #determine number of years spanned by query, and retrieve years between first and last years
-          #starting from most recent and working backwards
-          if year2 - year1 > 1
-            range = year2 - year1 - 1
-            (range..1).each do |i|
-              thisyear = year1 + i
-              @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}").order(sort_ord)
+          if year1 == year2
+            if msi_filter_type1 == 'SpecificDate'
+              asamdate = DateTime.parse(msi_filter_value1)
+              @asams = AsamMaster.where("tx_yyyy = #{year1}").where(tx_num: ref1[1]..ref2[1]).where(occur_date: asamdate).order(sort_ord)
+            elsif msi_filter_type1 == 'DateRange'
+              asamdate = msi_filter_value1.split(':')
+              date1 = DateTime.parse(asamdate[0])
+              date2 = DateTime.parse(asamdate[1])
+              @asams = AsamMaster.where("tx_yyyy = #{year1}").where(tx_num: ref1[1]..ref2[1]).where(occur_date: date1..date2).order(sort_ord)
+            else
+              @asams = AsamMaster.where("tx_yyyy = #{year1}").where(tx_num: ref1[1]..ref2[1]).order(sort_ord)
             end
+          else
+            #retrieve range fo ref. numbers from 'to' year
+            if msi_filter_type1 == 'SpecificDate'
+              asamdate = DateTime.parse(msi_filter_value1)
+              @asams = AsamMaster.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}").where(occur_date: asamdate).order(sort_ord)
+            elsif msi_filter_type1 == 'DateRange'
+              asamdate = msi_filter_value1.split(':')
+              date1 = DateTime.parse(asamdate[0])
+              date2 = DateTime.parse(asamdate[1])
+              @asams = AsamMaster.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}").where(occur_date: date1..date2).order(sort_ord)
+            else
+              @asams = AsamMaster.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}").order(sort_ord)
+            end
+            #determine number of years spanned by query, and retrieve years between first and last years
+            #starting from most recent and working backwards
+            if year2 - year1 > 1
+              range = year2 - year1 - 1
+              (range..1).each do |i|
+                thisyear = year1 + i
+                if msi_filter_type1 == 'SpecificDate'
+                  asamdate = DateTime.parse(msi_filter_value1)
+                  @asams = AsamMaster.where("tx_yyyy = #{thisyear}").where(occur_date: asamdate).order(sort_ord)
+                elsif msi_filter_type1 == 'DateRange'
+                  asamdate = msi_filter_value1.split(':')
+                  date1 = DateTime.parse(asamdate[0])
+                  date2 = DateTime.parse(asamdate[1])
+                  @asams = AsamMaster.where("tx_yyyy = #{thisyear}").where(occur_date: date1..date2).order(sort_ord)
+                else
+                  @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}").order(sort_ord)
+                end
+              end
+            end
+            #retrieve range of ref numbers from 'from' year
+            if msi_filter_type1 == 'SpecificDate'
+              asamdate = DateTime.parse(msi_filter_value1)
+              @asams = AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}").where(occur_date: asamdate).order(sort_ord)
+            elsif msi_filter_type1 == 'DateRange'
+              asamdate = msi_filter_value1.split(':')
+              date1 = DateTime.parse(asamdate[0])
+              date2 = DateTime.parse(asamdate[1])
+              @asams = AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}").where(occur_date: date1..date2).order(sort_ord)
+            else
+              @asams = @asams + AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}")
+            end
+            #sort concatenated results by date descending
+            @asams = @asams.sort {|a,b| b.occur_date <=> a.occur_date}
           end
-          #retrieve range of ref numbers from 'from' year
-          @asams = @asams + AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}")
-          #sort concatenated results by date descending
-          @asams = @asams.sort {|a,b| b.occur_date <=> a.occur_date}
         end
 
         # Sort Ascending
         if msi_sort_value.include? 'ASC'
-          #retrieve range of ref numbers from 'from' year
-          @asams = AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}").order(sort_ord)
-          #determine number of years spanned by query, and retrieve years between first and last years
-          #starting from most recent and working forwards
-          if year2 - year1 > 1
-            range = year2 - year1 - 1
-            (1..range).each do |i|
-              thisyear = year1 + i
-              @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}").order(sort_ord)
+          if year1 == year2
+            @asams = AsamMaster.where("tx_yyyy = #{year1}").where(tx_num: ref1[1]..ref2[1]).order(sort_ord)
+          else
+            #retrieve range of ref numbers from 'from' year
+            @asams = AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}").order(sort_ord)
+            #determine number of years spanned by query, and retrieve years between first and last years
+            #starting from most recent and working forwards
+            if year2 - year1 > 1
+              range = year2 - year1 - 1
+              (1..range).each do |i|
+                thisyear = year1 + i
+                @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}").order(sort_ord)
+              end
             end
+            #retrieve range fo ref. numbers from 'to' year
+            @asams = @asams + AsamMaster.where("tx_yyyy = #{year2} and tx_num >= #{ref2[1]}")
+            #sort concatenated results by date ascending
+            @asams = @asams.sort {|a,b| a.occur_date <=> b.occur_date}
           end
-          #retrieve range fo ref. numbers from 'to' year
-          @asams = @asams + AsamMaster.where("tx_yyyy = #{year2} and tx_num >= #{ref2[1]}")
-          #sort concatenated results by date ascending
-          @asams = @asams.sort {|a,b| a.occur_date <=> b.occur_date}
         end
       #
       # Sort by ref number
@@ -246,20 +295,24 @@ class AsamMasterController < ApplicationController
         year1 = ref1[0].to_i
         year2 = ref2[0].to_i
         @asams = Array.new
-        @asams = AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}")
-        if year2 - year1 > 1
-          range = year2 - year1 - 1
-          (1..range).each do |i|
-            thisyear = year1 + i
-            @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}")
+        if year1 == year2
+          @asams = AsamMaster.where("tx_yyyy = #{year1}").where(tx_num: ref1[1]..ref2[1]).order(sort_ord)
+        else
+          @asams = AsamMaster.where("tx_yyyy = #{year1} and tx_num >= #{ref1[1]}")
+          if year2 - year1 > 1
+            range = year2 - year1 - 1
+            (1..range).each do |i|
+              thisyear = year1 + i
+              @asams = @asams + AsamMaster.where("tx_yyyy = #{thisyear}")
+            end
           end
-        end
-        @asams = @asams + AsamMaster.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}")
+          @asams = @asams + AsamMaster.where("tx_yyyy = #{year2} and tx_num <= #{ref2[1]}")
 
-        if msi_sort_value.include? 'DESC' #sort descending
-          @asams = @asams.sort_by {|a| [a.tx_yyyy, a.tx_num]}.reverse!
-        elsif msi_sort_value.include? 'ASC' #sort ascending
-          @asams = @asams.sort_by {|a| [a.tx_yyyy, a.tx_num]}
+          if msi_sort_value.include? 'DESC' #sort descending
+            @asams = @asams.sort_by {|a| [a.tx_yyyy, a.tx_num]}.reverse!
+          elsif msi_sort_value.include? 'ASC' #sort ascending
+            @asams = @asams.sort_by {|a| [a.tx_yyyy, a.tx_num]}
+          end
         end
       end
     end

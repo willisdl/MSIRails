@@ -423,7 +423,7 @@
               num2Value = Number(document.asamForm.asamGenFilterNumberRangeTo.value);
               if(isNaN(num1Value) || isNaN(num2Value)) { alert("You must enter number values for Reference Number Range search."); return false; }
               if(num1Value < 1 || num2Value < 1) { alert("You must enter a valid reference number for Reference Number Range search."); return false; }
-              if(num1Value > num2Value) { alert("The starting number in the range cannot be greater than the ending number."); return false; }
+              if((num1Value > num2Value) && (year1value == year2value)) { alert("The starting number in the range cannot be greater than the ending number."); return false; }
 
               document.processForm.MSI_generalFilterType.value = "NumberRange";
               document.processForm.MSI_generalFilterValue.value = year1Value+"_"+num1Value+":"+year2Value+"_"+num2Value;
