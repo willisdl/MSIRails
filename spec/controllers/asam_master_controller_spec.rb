@@ -69,7 +69,7 @@ describe AsamMasterController do
       i += 1
       get 'asam_query', {:MSI_generalFilterType => 'All', :MSI_outputOptionValue1 => 'Date DESC'}
       assigns(:asams)[0].tx_yyyy.should == 2009
-      assigns(:asams)[0].tx_num.should == 410
+      assigns(:asams)[0].tx_num.should == 419
     end
 
     it 'should test All ASAMs date asc' do
@@ -101,7 +101,7 @@ describe AsamMasterController do
       i += 1
       get 'asam_query', {:MSI_generalFilterType => 'All', :MSI_outputOptionValue1 => 'Date DESC', :MSI_additionalFilterType1 => 'SpecificDate', :MSI_additionalFilterValue1 => '2008-SEP-18'}
       assigns(:asams)[0].tx_yyyy.should == 2008
-      assigns(:asams)[0].tx_num.should == 336
+      assigns(:asams)[0].tx_num.should == 362
     end
 
     it 'should test All ASAMs ref desc specificdate 18Sep08' do
@@ -149,6 +149,31 @@ describe AsamMasterController do
       assigns(:asams)[0].tx_yyyy.should == 2002
       assigns(:asams)[0].tx_num.should == 2
     end
+
+    #Number range 2002_245 to 2004_12  low end = 2002_245 high = 2004_12 count = 527
+    it 'should return ASAM Ref range 2002_245 to 2004_12 ref desc' do
+      $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 desc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Number DESC'}
+      assigns(:asams)[0].tx_yyyy.should == 2002
+      assigns(:asams)[0].tx_num.should == 245
+      assigns(:asams).length.should == 527
+      assigns(:asams)[526].tx_yyyy.should == 2004
+      assigns(:asams)[526].tx_num.should == 12
+    end
+
+    #Number range specific date 3sep02 low = 2002_252 high = 2002_253
+    it 'should return ASAM Ref range 2002_245 to 2004_12 specific date 3sep02 ref desc' do
+      $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 desc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Number DESC', :MSI_additionalFilterType1 => 'SpecificDate', :MSI_additionalFilterValue1 => '2002-SEP-03'}
+      assigns(:asams)[0].tx_yyyy.should == 2002
+      assigns(:asams)[0].tx_num.should == 252
+      assigns(:asams).length.should == 2
+      assigns(:asams)[1].tx_yyyy.should == 2002
+      assigns(:asams)[1].tx_num.should == 253
+    end
+    #date range 3sep02 to 1dec02 low = 2002_250 high = 2003_1 count = 96
 
   end
 

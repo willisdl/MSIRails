@@ -14,11 +14,11 @@ class AsamMaster < ActiveRecord::Base
       direct = 'N'
     end
     degint = posval.to_i
-    remain = posval % 1
+    remain = posval - degint
     minint = (remain * 60).to_i
-    lastremain = (remain * 60) % 1
+    lastremain = (remain * 60) - minint
     secint = (lastremain * 60).to_i
-    secremain = (lastremain * 60) % 1
+    secremain = (lastremain * 60) - secint
     if secremain >= 0.5
       secint += 1
     end
@@ -49,11 +49,11 @@ class AsamMaster < ActiveRecord::Base
       direct = 'E'
     end
     degint = posval.to_i
-    remain = posval % 1
+    remain = posval - degint
     minint = (remain * 60).to_i
-    lastremain = (remain * 60) % 1
+    lastremain = (remain * 60) - minint
     secint = (lastremain * 60).to_i
-    secremain = (lastremain * 60) % 1
+    secremain = (lastremain * 60) - secint
     if secremain >= 0.5
       secint += 1
     end
