@@ -173,8 +173,18 @@ describe AsamMasterController do
       assigns(:asams)[1].tx_yyyy.should == 2002
       assigns(:asams)[1].tx_num.should == 253
     end
-    #date range 3sep02 to 1dec02 low = 2002_250 high = 2003_1 count = 96
 
+    #date range 3sep02 to 1dec02 low = 2002_250 high = 2003_1 count = 96
+    it 'should return ASAM Ref range 2002_245 to 2004_12 date range 3sep02 to 1dec02 ref desc' do
+      $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 desc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Number DESC', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2002-SEP-03:2002-DEC-01'}
+      assigns(:asams)[0].tx_yyyy.should == 2002
+      assigns(:asams)[0].tx_num.should == 250
+      assigns(:asams).length.should == 96
+      assigns(:asams)[95].tx_yyyy.should == 2003
+      assigns(:asams)[95].tx_num.should == 1
+    end
   end
 
 end
