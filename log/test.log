@@ -1916,3 +1916,499 @@ Processing by AsamMasterController#asam_query as HTML
   Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21"}
 Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
   [1m[35mAsamMaster Load (3798.1ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+  [1m[36mActiveRecord::SchemaMigration Load (4.0ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (5.7ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (23.6ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-SEP-03"}
+Completed 200 OK in 71ms (Views: 52.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (25.3ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mAsamMaster Load (36.7ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND ((tx_yyyy = 2002 and tx_num >= 245)} or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy ASC, tx_num ASC[0m
+OCIError: ORA-00907: missing right parenthesis: SELECT "ASAM_MASTER".* FROM "ASAM_MASTER"  WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND ((tx_yyyy = 2002 and tx_num >= 245)} or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12))  ORDER BY tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (12.0ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY tx_yyyy DESC, tx_num DESC
+  [1m[36mPrimary Key (7.9ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (9.7ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number ASC"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (7000.3ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (7185.3ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-DEC-06"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (6.1ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' AND "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-12-06 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number DESC"}
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (7316.5ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-SEP-03:2002-DEC-01"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (8.9ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245)} or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-12-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY tx_yyyy DESC, tx_num DESC[0m
+OCIError: ORA-00907: missing right parenthesis: SELECT "ASAM_MASTER".* FROM "ASAM_MASTER"  WHERE ((tx_yyyy = 2002 and tx_num >= 245)} or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-12-01 00:00:00','YYYY-MM-DD HH24:MI:SS'))  ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2004-MAY-01"}
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (13.4ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2004-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-SEP-03:2002-DEC-01"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (7.9ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245)} or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-12-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY tx_yyyy ASC, tx_num ASC[0m
+OCIError: ORA-00907: missing right parenthesis: SELECT "ASAM_MASTER".* FROM "ASAM_MASTER"  WHERE ((tx_yyyy = 2002 and tx_num >= 245)} or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-12-01 00:00:00','YYYY-MM-DD HH24:MI:SS'))  ORDER BY tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (7.8ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245)} or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy DESC, tx_num DESC
+OCIError: ORA-00907: missing right parenthesis: SELECT "ASAM_MASTER".* FROM "ASAM_MASTER"  WHERE ((tx_yyyy = 2002 and tx_num >= 245)} or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12))  ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2010-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (4.9ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2010-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Number ASC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (24.8ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date ASC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (25.2ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (11.5ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"SpecificNumber", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"2008_336"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (7.9ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."TX_YYYY" = 2008 AND "ASAM_MASTER"."TX_NUM" = 336[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Number DESC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (30.2ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2002-MAY-01"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (194.0ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC"}
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (8.8ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245)} or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy ASC, tx_num ASC
+OCIError: ORA-00907: missing right parenthesis: SELECT "ASAM_MASTER".* FROM "ASAM_MASTER"  WHERE ((tx_yyyy = 2002 and tx_num >= 245)} or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12))  ORDER BY tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2002-MAY-01"}
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (186.3ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (7533.5ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-SEP-03"}
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (8.8ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND ((tx_yyyy = 2002 and tx_num >= 245)} or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy DESC, tx_num DESC[0m
+OCIError: ORA-00907: missing right parenthesis: SELECT "ASAM_MASTER".* FROM "ASAM_MASTER"  WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND ((tx_yyyy = 2002 and tx_num >= 245)} or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12))  ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (29.3ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (5.0ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (8.2ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC"}
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (1113.8ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy ASC, tx_num ASC
+  [1m[36m (23.1ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (8.5ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2002-MAY-01"}
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (175.9ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (1190.9ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (10.4ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2002-MAY-01"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (178.7ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (9.9ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number DESC"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (6435.9ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-SEP-03"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (10.3ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2010-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (4.5ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2010-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Number DESC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (27.2ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-SEP-03:2002-DEC-01"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (135.0ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-12-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2004-MAY-01"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (10.8ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2004-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number ASC"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (6329.7ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Number ASC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (25.9ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"SpecificNumber", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"2008_336"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (4.7ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."TX_YYYY" = 2008 AND "ASAM_MASTER"."TX_NUM" = 336
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (8009.4ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-SEP-03"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (11.2ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (9.3ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC"}
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (6659.6ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (27.5ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-DEC-06"}
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (6.1ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' AND "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-12-06 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date ASC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (23.4ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-SEP-03:2002-DEC-01"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (137.8ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-12-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY tx_yyyy ASC, tx_num ASC
+  [1m[36mActiveRecord::SchemaMigration Load (2.8ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (6.3ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (8.6ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2010-SEP-18"}
+  Rendered asam_master/asam_query.html.erb (0.3ms)
+Completed 200 OK in 11ms (Views: 6.7ms | ActiveRecord: 0.0ms)
+  [1m[35m (25.4ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mAsamMaster Load (4.7ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2010-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date ASC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (29.0ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC
+  [1m[36mPrimary Key (8.0ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2002-MAY-01"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (186.7ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2004-MAY-01"}
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (11.3ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2004-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number DESC"}
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (6714.0ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-SEP-03"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (6.3ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-DEC-06"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (6.3ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' AND "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-12-06 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-SEP-03:2002-DEC-01"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (144.3ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-12-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Number ASC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (23.8ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number ASC"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (6588.9ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-SEP-03:2002-DEC-01"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (142.9ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-12-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (1188.6ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (50.5ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC"}
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (1206.4ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (6540.4ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Number DESC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (25.9ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-SEP-03"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (6.1ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC"}
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (6532.5ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (10.2ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (9.0ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (9.9ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"SpecificNumber", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"2008_336"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (4.8ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."TX_YYYY" = 2008 AND "ASAM_MASTER"."TX_NUM" = 336[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2002-MAY-01"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (186.2ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (5.2ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (7.6ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC"}
+Completed 200 OK in 7ms (Views: 5.5ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (1133.0ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy ASC, tx_num ASC
+  [1m[36m (32.0ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mPrimary Key (7.5ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (6422.6ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (9.6ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (10.1ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (6472.4ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number ASC"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (6790.9ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number DESC"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (6747.0ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-SEP-03"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (6.8ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (12.8ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (27.1ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-DEC-06"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (5.9ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' AND "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-12-06 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Number ASC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (24.0ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date ASC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (26.1ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (1208.2ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-SEP-03"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (7.6ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2004-MAY-01"}
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (10.7ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2004-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2002-MAY-01"}
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (195.6ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2002-MAY-01"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (178.7ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"SpecificNumber", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"2008_336"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (4.3ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."TX_YYYY" = 2008 AND "ASAM_MASTER"."TX_NUM" = 336
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-SEP-03:2002-DEC-01"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (125.5ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-12-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2010-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (4.3ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2010-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-SEP-03:2002-DEC-01"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (141.0ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004) or (tx_yyyy = 2004 and tx_num <= 12)) AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-12-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Number DESC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (24.9ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY tx_yyyy DESC, tx_num DESC
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (5.2ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (8.7ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (5.6ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'NSS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mPrimary Key (8.2ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'NSS' AND c.table_name = 'SCHEMA_MIGRATIONS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+  Rendered asam_master/asam_query.html.erb (0.2ms)
+Completed 200 OK in 8ms (Views: 5.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (30.7ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'WK1NSS' AND table_name = 'ASAM_MASTER' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36mAsamMaster Load (10.4ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+  [1m[35mPrimary Key (8.4ms)[0m  SELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'WK1NSS' AND c.table_name = 'ASAM_MASTER' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (11.1ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number DESC"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (6873.7ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (777.7ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-SEP-03"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (10.0ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2008-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (13.6ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2008-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2004-MAY-01"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (13.0ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2004-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Number ASC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (27.9ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (813.2ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (6675.3ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (33.3ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number ASC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-SEP-03:2002-DEC-01"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (147.0ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004 and tx_num <= 12)) AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-12-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC"}
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (7131.6ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-SEP-03"}
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (14.5ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004 and tx_num <= 12)) ORDER BY tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date DESC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2002-MAY-01"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (185.4ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"21", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2002-DEC-06"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (6.5ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' AND "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2002-12-06 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date DESC, tx_yyyy DESC, tx_num DESC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-JAN-01:2002-MAY-01"}
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (185.9ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-05-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"SpecificNumber", "MSI_outputOptionValue1"=>"Date DESC", "MSI_generalFilterValue"=>"2008_336"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (4.3ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."TX_YYYY" = 2008 AND "ASAM_MASTER"."TX_NUM" = 336[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Date ASC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (24.4ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Number ASC"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (7213.9ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" ORDER BY tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"NumberRange", "MSI_generalFilterValue"=>"2002_245:2004_12", "MSI_outputOptionValue1"=>"Number DESC", "MSI_additionalFilterType1"=>"DateRange", "MSI_additionalFilterValue1"=>"2002-SEP-03:2002-DEC-01"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (186.2ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE ((tx_yyyy = 2002 and tx_num >= 245) or (tx_yyyy = 2003) or (tx_yyyy = 2004 and tx_num <= 12)) AND ("ASAM_MASTER"."OCCUR_DATE" BETWEEN TO_DATE('2002-09-03 00:00:00','YYYY-MM-DD HH24:MI:SS') AND TO_DATE('2002-12-01 00:00:00','YYYY-MM-DD HH24:MI:SS')) ORDER BY tx_yyyy DESC, tx_num DESC
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"All", "MSI_outputOptionValue1"=>"Date ASC", "MSI_additionalFilterType1"=>"SpecificDate", "MSI_additionalFilterValue1"=>"2010-SEP-18"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+  [1m[36mAsamMaster Load (4.5ms)[0m  [1mSELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."OCCUR_DATE" = TO_DATE('2010-09-18 00:00:00','YYYY-MM-DD HH24:MI:SS') ORDER BY occur_date ASC, tx_yyyy ASC, tx_num ASC[0m
+Processing by AsamMasterController#asam_query as HTML
+  Parameters: {"MSI_generalFilterType"=>"Subregion", "MSI_outputOptionValue1"=>"Number DESC", "MSI_generalFilterValue"=>"21"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[35mAsamMaster Load (26.2ms)[0m  SELECT "ASAM_MASTER".* FROM "ASAM_MASTER" WHERE "ASAM_MASTER"."SUBREGION" = '21' ORDER BY tx_yyyy DESC, tx_num DESC

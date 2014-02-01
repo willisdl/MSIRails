@@ -155,11 +155,11 @@ describe AsamMasterController do
       $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 desc")
       i += 1
       get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Number DESC'}
-      assigns(:asams)[0].tx_yyyy.should == 2002
-      assigns(:asams)[0].tx_num.should == 245
+      assigns(:asams)[0].tx_yyyy.should == 2004
+      assigns(:asams)[0].tx_num.should == 12
       assigns(:asams).length.should == 527
-      assigns(:asams)[526].tx_yyyy.should == 2004
-      assigns(:asams)[526].tx_num.should == 12
+      assigns(:asams)[526].tx_yyyy.should == 2002
+      assigns(:asams)[526].tx_num.should == 245
     end
 
     #Number range specific date 3sep02 low = 2002_252 high = 2002_253
@@ -168,10 +168,10 @@ describe AsamMasterController do
       i += 1
       get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Number DESC', :MSI_additionalFilterType1 => 'SpecificDate', :MSI_additionalFilterValue1 => '2002-SEP-03'}
       assigns(:asams)[0].tx_yyyy.should == 2002
-      assigns(:asams)[0].tx_num.should == 252
+      assigns(:asams)[0].tx_num.should == 253
       assigns(:asams).length.should == 2
       assigns(:asams)[1].tx_yyyy.should == 2002
-      assigns(:asams)[1].tx_num.should == 253
+      assigns(:asams)[1].tx_num.should == 252
     end
 
     #date range 3sep02 to 1dec02 low = 2002_250 high = 2003_1 count = 96
@@ -179,12 +179,49 @@ describe AsamMasterController do
       $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 desc")
       i += 1
       get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Number DESC', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2002-SEP-03:2002-DEC-01'}
+      assigns(:asams)[0].tx_yyyy.should == 2003
+      assigns(:asams)[0].tx_num.should == 1
+      assigns(:asams).length.should == 96
+      assigns(:asams)[95].tx_yyyy.should == 2002
+      assigns(:asams)[95].tx_num.should == 250
+    end
+
+    #Number range 2002_245 to 2004_12  low end = 2002_245 high = 2004_12 count = 527
+    it 'should return ASAM Ref range 2002_245 to 2004_12 ref asc' do
+      $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 asc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Number ASC'}
+      assigns(:asams)[0].tx_yyyy.should == 2002
+      assigns(:asams)[0].tx_num.should == 245
+      assigns(:asams).length.should == 527
+      assigns(:asams)[526].tx_yyyy.should == 2004
+      assigns(:asams)[526].tx_num.should == 12
+    end
+
+    #Number range specific date 3sep02 low = 2002_252 high = 2002_253
+    it 'should return ASAM Ref range 2002_245 to 2004_12 specific date 3sep02 ref asc' do
+      $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 asc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Number ASC', :MSI_additionalFilterType1 => 'SpecificDate', :MSI_additionalFilterValue1 => '2002-SEP-03'}
+      assigns(:asams)[0].tx_yyyy.should == 2002
+      assigns(:asams)[0].tx_num.should == 252
+      assigns(:asams).length.should == 2
+      assigns(:asams)[1].tx_yyyy.should == 2002
+      assigns(:asams)[1].tx_num.should == 253
+    end
+
+    #date range 3sep02 to 1dec02 low = 2002_250 high = 2003_1 count = 96
+    it 'should return ASAM Ref range 2002_245 to 2004_12 date range 3sep02 to 1dec02 ref asc' do
+      $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 asc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Number ASC', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2002-SEP-03:2002-DEC-01'}
       assigns(:asams)[0].tx_yyyy.should == 2002
       assigns(:asams)[0].tx_num.should == 250
       assigns(:asams).length.should == 96
       assigns(:asams)[95].tx_yyyy.should == 2003
       assigns(:asams)[95].tx_num.should == 1
     end
+
   end
 
 end
