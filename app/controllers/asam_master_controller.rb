@@ -49,7 +49,7 @@ class AsamMasterController < ApplicationController
     msi_map = params[:MSI_MAP]
     @searchparam = Array.new
     sort_ord = 'occur_date DESC, tx_yyyy DESC, tx_num DESC' if msi_sort_value.include? 'Date DESC'
-    sort_ord = 'occur_date ASC, tx_yyyy ASC, tx_num ASC' if msi_sort_value.include? 'Date ASC'
+    sort_ord = 'occur_date asc, tx_yyyy asc, tx_num asc' if msi_sort_value.include? 'Date ASC'
     sort_ord = 'tx_yyyy DESC, tx_num DESC' if msi_sort_value.include? 'Number DESC'
     sort_ord = 'tx_yyyy ASC, tx_num ASC' if msi_sort_value.include? 'Number ASC'
     @searchparam[0] = 'All Anti-Shipping Activity Messages' if msi_filter_type == 'All'

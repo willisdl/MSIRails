@@ -16,12 +16,15 @@ describe AsamMasterController do
   end
 
   describe 'asam_query' do
+=begin
     it 'should return Subregion 21 date desc' do
       $stdout.puts(">>>>Test #{i}, Subregion 21 date desc")
       i += 1
       get 'asam_query', {:MSI_generalFilterType => 'Subregion', :MSI_outputOptionValue1 => 'Date DESC', :MSI_generalFilterValue => '21'}
       assigns(:asams)[0].tx_yyyy.should == 2009
       assigns(:asams)[0].tx_num.should == 345
+      assigns(:asams).last.tx_yyyy.should == 1995
+      assigns(:asams).last.tx_num.should == 85
     end
 
     it 'should return Subregion 21 date asc' do
@@ -30,6 +33,8 @@ describe AsamMasterController do
       get 'asam_query', {:MSI_generalFilterType => 'Subregion', :MSI_outputOptionValue1 => 'Date ASC', :MSI_generalFilterValue => '21'}
       assigns(:asams)[0].tx_yyyy.should == 1995
       assigns(:asams)[0].tx_num.should == 85
+      assigns(:asams).last.tx_yyyy.should == 2009
+      assigns(:asams).last.tx_num.should == 345
     end
 
     it 'should return Subregion 21 ref desc' do
@@ -38,6 +43,8 @@ describe AsamMasterController do
       get 'asam_query', {:MSI_generalFilterType => 'Subregion', :MSI_outputOptionValue1 => 'Number DESC', :MSI_generalFilterValue => '21'}
       assigns(:asams)[0].tx_yyyy.should == 2009
       assigns(:asams)[0].tx_num.should == 345
+      assigns(:asams).last.tx_yyyy.should == 1995
+      assigns(:asams).last.tx_num.should == 85
     end
 
     it 'should return Subregion 21 ref asc' do
@@ -46,6 +53,9 @@ describe AsamMasterController do
       get 'asam_query', {:MSI_generalFilterType => 'Subregion', :MSI_outputOptionValue1 => 'Number ASC', :MSI_generalFilterValue => '21'}
       assigns(:asams)[0].tx_yyyy.should == 1995
       assigns(:asams)[0].tx_num.should == 85
+      asamsize = :asams.length - 1
+      assigns(:asams).last.tx_yyyy.should == 2009
+      assigns(:asams).last.tx_num.should == 345
     end
 
     it 'should return Subregion 21 desc specificdate' do
@@ -62,6 +72,18 @@ describe AsamMasterController do
       get 'asam_query', {:MSI_generalFilterType => 'Subregion', :MSI_outputOptionValue1 => 'Date DESC', :MSI_generalFilterValue => '21', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2002-JAN-01:2004-MAY-01'}
       assigns(:asams)[0].tx_yyyy.should == 2004
       assigns(:asams)[0].tx_num.should == 102
+      assigns(:asams).last.tx_yyyy.should == 2002
+      assigns(:asams).last.tx_num.should == 34
+    end
+
+    it 'should return Subregion 21 asc daterange' do
+      $stdout.puts(">>>>Test #{i}, Subregion 21 asc daterange")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'Subregion', :MSI_outputOptionValue1 => 'Date ASC', :MSI_generalFilterValue => '21', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2002-JAN-01:2004-MAY-01'}
+      assigns(:asams)[0].tx_yyyy.should == 2002
+      assigns(:asams)[0].tx_num.should == 34
+      assigns(:asams).last.tx_yyyy.should == 2004
+      assigns(:asams).last.tx_num.should == 102
     end
 
     it 'should test All ASAMs date desc' do
@@ -158,8 +180,8 @@ describe AsamMasterController do
       assigns(:asams)[0].tx_yyyy.should == 2004
       assigns(:asams)[0].tx_num.should == 12
       assigns(:asams).length.should == 527
-      assigns(:asams)[526].tx_yyyy.should == 2002
-      assigns(:asams)[526].tx_num.should == 245
+      assigns(:asams).last.tx_yyyy.should == 2002
+      assigns(:asams).last.tx_num.should == 245
     end
 
     #Number range specific date 3sep02 low = 2002_252 high = 2002_253
@@ -182,8 +204,8 @@ describe AsamMasterController do
       assigns(:asams)[0].tx_yyyy.should == 2003
       assigns(:asams)[0].tx_num.should == 1
       assigns(:asams).length.should == 96
-      assigns(:asams)[95].tx_yyyy.should == 2002
-      assigns(:asams)[95].tx_num.should == 250
+      assigns(:asams).last.tx_yyyy.should == 2002
+      assigns(:asams).last.tx_num.should == 250
     end
 
     #Number range 2002_245 to 2004_12  low end = 2002_245 high = 2004_12 count = 527
@@ -194,8 +216,8 @@ describe AsamMasterController do
       assigns(:asams)[0].tx_yyyy.should == 2002
       assigns(:asams)[0].tx_num.should == 245
       assigns(:asams).length.should == 527
-      assigns(:asams)[526].tx_yyyy.should == 2004
-      assigns(:asams)[526].tx_num.should == 12
+      assigns(:asams).last.tx_yyyy.should == 2004
+      assigns(:asams).last.tx_num.should == 12
     end
 
     #Number range specific date 3sep02 low = 2002_252 high = 2002_253
@@ -218,8 +240,52 @@ describe AsamMasterController do
       assigns(:asams)[0].tx_yyyy.should == 2002
       assigns(:asams)[0].tx_num.should == 250
       assigns(:asams).length.should == 96
-      assigns(:asams)[95].tx_yyyy.should == 2003
-      assigns(:asams)[95].tx_num.should == 1
+      assigns(:asams).last.tx_yyyy.should == 2003
+      assigns(:asams).last.tx_num.should == 1
+    end
+=end
+    #date range 3sep02 to 1dec02 low = 2002_250 high = 2003_1 count = 96
+    it 'should return ASAM Ref range 2002_245 to 2004_12 date range 3sep02 to 1dec02 date desc' do
+      $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 daterange date desc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Date DESC', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2002-SEP-03:2002-DEC-01'}
+      assigns(:asams)[0].tx_yyyy.should == 2002
+      assigns(:asams)[0].tx_num.should == 343
+      assigns(:asams).last.tx_yyyy.should == 2002
+      assigns(:asams).last.tx_num.should == 252
+    end
+
+    #date range 3sep02 to 1dec02 low = 2002_250 high = 2003_1 count = 96
+    it 'should return ASAM Ref range 2002_245 to 2004_12 date range 3sep02 to 1dec02 date asc' do
+      $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 daterange date asc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Date ASC', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2002-SEP-03:2002-DEC-01'}
+      assigns(:asams)[0].tx_yyyy.should == 2002
+      assigns(:asams)[0].tx_num.should == 252
+      assigns(:asams).last.tx_yyyy.should == 2002
+      assigns(:asams).last.tx_num.should == 343
+    end
+
+    #Number range 2002_245 to 2004_12  low end = 2002_245 high = 2004_12 count = 527
+    it 'should return ASAM Ref range 2002_245 to 2004_12 date desc' do
+      $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 date desc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Date DESC'}
+      assigns(:asams)[0].tx_yyyy.should == 2004
+      assigns(:asams)[0].tx_num.should == 12
+      assigns(:asams).last.tx_yyyy.should == 2002
+      assigns(:asams).last.tx_num.should == 245
+    end
+
+    #Number range 2002_245 to 2004_12  low end = 2002_245 high = 2004_12 count = 527
+    it 'should return ASAM Ref range 2002_245 to 2004_12 date asc' do
+      $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 date asc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Date ASC'}
+      assigns(:asams)[0].tx_yyyy.should == 2002
+      assigns(:asams)[0].tx_num.should == 245
+      assigns(:asams).last.tx_yyyy.should == 2004
+      assigns(:asams).last.tx_num.should == 12
     end
 
   end
