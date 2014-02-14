@@ -16,7 +16,7 @@ describe AsamMasterController do
   end
 
   describe 'asam_query' do
-=begin
+
     it 'should return Subregion 21 date desc' do
       $stdout.puts(">>>>Test #{i}, Subregion 21 date desc")
       i += 1
@@ -243,7 +243,7 @@ describe AsamMasterController do
       assigns(:asams).last.tx_yyyy.should == 2003
       assigns(:asams).last.tx_num.should == 1
     end
-=end
+
     #date range 3sep02 to 1dec02 low = 2002_250 high = 2003_1 count = 96
     it 'should return ASAM Ref range 2002_245 to 2004_12 date range 3sep02 to 1dec02 date desc' do
       $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 daterange date desc")
@@ -286,6 +286,105 @@ describe AsamMasterController do
       assigns(:asams)[0].tx_num.should == 245
       assigns(:asams).last.tx_yyyy.should == 2004
       assigns(:asams).last.tx_num.should == 12
+    end
+
+    #Number range 2002_245 to 2004_12  low end = 2002_245 high = 2004_12 count = 527
+    it 'should return ASAM Ref range 2002_245 to 2004_12 date asc' do
+      $stdout.puts(">>>>Test #{i}, ASAM Ref range 2002_245 to 2004_12 date asc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'NumberRange', :MSI_generalFilterValue => '2002_245:2004_12', :MSI_outputOptionValue1 => 'Date ASC'}
+      assigns(:asams)[0].tx_yyyy.should == 2002
+      assigns(:asams)[0].tx_num.should == 245
+      assigns(:asams).last.tx_yyyy.should == 2004
+      assigns(:asams).last.tx_num.should == 12
+    end
+
+    it 'should return ASAMs by victim (yacht) date desc' do
+      $stdout.puts(">>>>Test #{i}, ASAMs by victim (yacht) date desc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'VictimName', :MSI_outputOptionValue1 => 'Date DESC', :MSI_generalFilterValue => 'yacht'}
+      assigns(:asams)[0].tx_yyyy.should == 2009
+      assigns(:asams)[0].tx_num.should == 297
+      assigns(:asams).last.tx_yyyy.should == 1996
+      assigns(:asams).last.tx_num.should == 9
+    end
+
+    it 'should return ASAMs by victim (yacht) date asc' do
+      $stdout.puts(">>>>Test #{i}, ASAMs by victim (yacht) date asc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'VictimName', :MSI_outputOptionValue1 => 'Date ASC', :MSI_generalFilterValue => 'yacht'}
+      assigns(:asams)[0].tx_yyyy.should == 1996
+      assigns(:asams)[0].tx_num.should == 9
+      assigns(:asams).last.tx_yyyy.should == 2009
+      assigns(:asams).last.tx_num.should == 297
+    end
+
+    it 'should return ASAMs by victim (yacht) ref desc' do
+      $stdout.puts(">>>>Test #{i}, ASAMs by victim (yacht) ref desc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'VictimName', :MSI_outputOptionValue1 => 'Number DESC', :MSI_generalFilterValue => 'yacht'}
+      assigns(:asams)[0].tx_yyyy.should == 2009
+      assigns(:asams)[0].tx_num.should == 297
+      assigns(:asams).last.tx_yyyy.should == 1996
+      assigns(:asams).last.tx_num.should == 9
+    end
+
+    it 'should return ASAMs by victim (yacht) ref asc' do
+      $stdout.puts(">>>>Test #{i}, ASAMs by victim (yacht) ref asc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'VictimName', :MSI_outputOptionValue1 => 'Number ASC', :MSI_generalFilterValue => 'yacht'}
+      assigns(:asams)[0].tx_yyyy.should == 1996
+      assigns(:asams)[0].tx_num.should == 9
+      assigns(:asams).last.tx_yyyy.should == 2009
+      assigns(:asams).last.tx_num.should == 297
+    end
+
+    it 'should return ASAMs by victim (yacht) daterange date desc' do
+      $stdout.puts(">>>>Test #{i}, ASAMs by victim (yacht) daterange date desc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'VictimName', :MSI_outputOptionValue1 => 'Date DESC', :MSI_generalFilterValue => 'yacht', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2001-JAN-01:2001-DEC-31'}
+      assigns(:asams)[0].tx_yyyy.should == 2001
+      assigns(:asams)[0].tx_num.should == 351
+      assigns(:asams).last.tx_yyyy.should == 2001
+      assigns(:asams).last.tx_num.should == 119
+    end
+
+    it 'should return ASAMs by victim (yacht) daterange daterange date asc' do
+      $stdout.puts(">>>>Test #{i}, ASAMs by victim (yacht) date asc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'VictimName', :MSI_outputOptionValue1 => 'Date ASC', :MSI_generalFilterValue => 'yacht', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2001-JAN-01:2001-DEC-31'}
+      assigns(:asams)[0].tx_yyyy.should == 2001
+      assigns(:asams)[0].tx_num.should == 119
+      assigns(:asams).last.tx_yyyy.should == 2001
+      assigns(:asams).last.tx_num.should == 351
+    end
+
+    it 'should return ASAMs by victim (yacht) daterange ref desc' do
+      $stdout.puts(">>>>Test #{i}, ASAMs by victim (yacht) daterange ref desc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'VictimName', :MSI_outputOptionValue1 => 'Number DESC', :MSI_generalFilterValue => 'yacht', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2001-JAN-01:2001-DEC-31'}
+      assigns(:asams)[0].tx_yyyy.should == 2001
+      assigns(:asams)[0].tx_num.should == 351
+      assigns(:asams).last.tx_yyyy.should == 2001
+      assigns(:asams).last.tx_num.should == 119
+    end
+
+    it 'should return ASAMs by victim (yacht) daterange ref asc' do
+      $stdout.puts(">>>>Test #{i}, ASAMs by victim (yacht) daterange ref asc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'VictimName', :MSI_outputOptionValue1 => 'Number ASC', :MSI_generalFilterValue => 'yacht', :MSI_additionalFilterType1 => 'DateRange', :MSI_additionalFilterValue1 => '2001-JAN-01:2001-DEC-31'}
+      assigns(:asams)[0].tx_yyyy.should == 2001
+      assigns(:asams)[0].tx_num.should == 119
+      assigns(:asams).last.tx_yyyy.should == 2001
+      assigns(:asams).last.tx_num.should == 351
+    end
+
+    it 'should return ASAMs by victim (yacht) specificdate date desc' do
+      $stdout.puts(">>>>Test #{i}, ASAMs by victim (yacht) specificdate date desc")
+      i += 1
+      get 'asam_query', {:MSI_generalFilterType => 'VictimName', :MSI_outputOptionValue1 => 'Date DESC', :MSI_generalFilterValue => 'yacht', :MSI_additionalFilterType1 => 'SpecificDate', :MSI_additionalFilterValue1 => '2001-AUG-12'}
+      assigns(:asams)[0].tx_yyyy.should == 2001
+      assigns(:asams)[0].tx_num.should == 244
     end
 
   end

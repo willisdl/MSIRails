@@ -147,6 +147,11 @@ class AsamMasterController < ApplicationController
       if msi_filter_type1 == 'SpecificDate'
         asamdate = DateTime.parse(msi_filter_value1)
         @asams = AsamMaster.where('lower(victim) = ?', name).where(occur_date: asamdate).order(sort_ord)
+      elsif msi_filter_type1 == 'DateRange'
+        asamdate = msi_filter_value1.split(':')
+        date1 = DateTime.parse(asamdate[0])
+        date2 = DateTime.parse(asamdate[1])
+        @asams = AsamMaster.where('lower(victim) = ?', name).where(occur_date: date1..date2).order(sort_ord)
       else
         @asams = AsamMaster.where('lower(victim) = ?', name).order(sort_ord)
       end
