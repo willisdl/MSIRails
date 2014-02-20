@@ -6,57 +6,27 @@ class AsamMaster < ActiveRecord::Base
   #             :originator, :e_mail_address, :commercial_telephone_number, :aggressor, :entry_date, :cmmnts, :text
 
   def str_lat
-    if self.latitude < 1
-      posval = self.latitude * (-1)
+    if self.latitude < 0
       direct = 'S'
     else
-      posval = self.latitude
       direct = 'N'
     end
-    degint = posval.to_i
-    remain = posval - degint
-    minint = (remain * 60).to_i
-    lastremain = (remain * 60) - minint
-    secint = (lastremain * 60).to_i
-    secremain = (lastremain * 60) - secint
-    if secremain >= 0.5
-      secint += 1
-    end
-    if secint == 60
-      minint += 1
-      secint = 0
-    end
-    if minint == 60
-      degint += 1
-      minint == 0
-    end
-    deg = degint.to_s
-    deg = '0' + deg if deg.length == 1
-    min = minint.to_s
-    min = '0' + min if min.length == 1
-    sec = secint.to_s
-    sec = '0' + sec if sec.length == 1
-    #sec = '00' if sec == '0'
-    @lat = [deg, min, sec, direct]
+    @lat = coord_transform(self.latitude, direct)
   end
 
   def str_lon
-    if self.longitude < 1
-      posval = self.longitude * (-1)
+    if self.longitude < 0
       direct = 'W'
     else
-      posval = self.longitude
       direct = 'E'
     end
-    degint = posval.to_i
-    remain = posval - degint
-    minint = (remain * 60).to_i
-    lastremain = (remain * 60) - minint
-    secint = (lastremain * 60).to_i
-    secremain = (lastremain * 60) - secint
-    if secremain >= 0.5
-      secint += 1
-    end
+    @lon = coord_transform(self.longitude, direct)
+  end
+
+  def coord_transform(coord, direction)
+    degint = coord.abs.to_i
+    minint = ((coord.abs - degint) * 60).to_i
+    secint = ((((coord.abs - degint) * 60) - minint) * 60).round
     if secint == 60
       minint += 1
       secint = 0
@@ -71,7 +41,7 @@ class AsamMaster < ActiveRecord::Base
     min = '0' + min if min.length == 1
     sec = secint.to_s
     sec = '0' + sec if sec.length == 1
-    @lon = [deg, min, sec, direct]
+    [deg, min, sec, direction]
   end
 
 end
