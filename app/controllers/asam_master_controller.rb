@@ -1,11 +1,12 @@
 class AsamMasterController < ApplicationController
-  def home
+
+  def initialize
+    @asam_sub = AsamMaster.new
   end
 
   def asam
     @subregions = Array.new
-    asam_sub = Asam.new
-    @subregions = asam_sub.get_subs
+    @subregions = @asam_sub.get_subs
   end
 
   def asam_query
@@ -22,11 +23,8 @@ class AsamMasterController < ApplicationController
     #msi_output_option_value2 = params[:MSI_outputOptionValue2]
     msi_map = params[:MSI_MAP]
     @asams = Array.new
-
-    get_asam = Asam.new
-    @asams = get_asam.get_asam(msi_filter_type, msi_filter_value, msi_filter_type1, msi_filter_value1, msi_sort_value)
-    @searchparam = get_asam.get_searchparam
-
+    @asams = @asam_sub.get_asam(msi_filter_type, msi_filter_value, msi_filter_type1, msi_filter_value1, msi_sort_value)
+    @searchparam = @asam_sub.get_searchparam
   end
 
 end
